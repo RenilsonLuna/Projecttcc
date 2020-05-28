@@ -16,7 +16,7 @@ class Usuario
 		$this->conexao = $conexao;
 	}
 
-	# ----- get e set -------- # 
+	# ----- get e set -------- #
 	public function __get($attr)
 	{
 		return $this->$attr;
@@ -29,7 +29,7 @@ class Usuario
 	}
 
 
-	# -------------- cadastro e login --------------- # 
+	# -------------- cadastro e login --------------- #
 	public function logar($email, $senha)
 	{
 	    $select = $this->conexao->select("SELECT * FROM tb_usuarios WHERE cd_email_usuario = :e AND cd_senha_usuario = :s", [
@@ -38,7 +38,7 @@ class Usuario
 	    ], \PDO::FETCH_ASSOC);
 	    if(count($select) >= 1){
             return $select;
-	    }else{
+	    }else if($select < 1){
 	        return false;
 	    }
 	}
@@ -53,7 +53,7 @@ class Usuario
 			'cd_cnpj_usuario' => $cnpj,
 			'cd_cpf_usuario' => $cpf,
 			'cd_img_perfil' => $img
-			
+
 		]);
 	}
 }

@@ -1,0 +1,19 @@
+{
+    "name": "vendor/tcc",
+    "require": {
+        "php": "^7.2"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Renilson Luna",
+            "email": "renilsonjunior1@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Classes\\": "Classes/",
+        "Libs\\": "Libs/"
+      }
+    }
+}
