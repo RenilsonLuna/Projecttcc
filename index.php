@@ -1,3 +1,6 @@
+<?php
+require "controle/homeControle.php";
+?>
 <!DOCTYPE html>
 <html lang="br">
 
@@ -13,20 +16,30 @@
 
 <body style="background-color: #e7e7e7;">
 
+
     <header class="container col-12 py-2" style="background-color: white;">
+
+      <?php if(!$auth) { ?>
+
         <div class="login position-absolute d-flex justify-content-end">
             <form class="" method="post" action="controle/loginControle.php">
-                <input class="input-login m-2" placeholder="Usuário" type="text" id="" name=""><br>
-                <input class="input-login m-2" placeholder="Senha" type="password" id="" name="">
+                <input class="input-login m-2" placeholder="Usuário" type="email" id="" name="email"><br>
+                <input class="input-login m-2" placeholder="Senha" type="password" id="" name="senha">
                 <a href="" class="aform ml-2">Cadastre-se já</a>
                 <input class="btnlogin ml-5" type="submit" value="Entrar">
             </form>
         </div>
-        <?php if(isset($_GET['erro']) && $_GET['erro'] == 1) { ?>
-        <div class="alert alert-danger col-md-3 col-sm-6 loginAlert" role="alert" id="alerta">
-            <h5>Usuário ou senha incorretos!</h5>
-        </div>
+
+      <?php } ?>
+
+      <?php if(isset($_GET['erro']) && $_GET['erro'] == 1 && !$auth) { ?>
+
+          <div class="alert alert-danger col-md-3 col-sm-6 loginAlert" role="alert" id="alerta">
+              <h5>Usuário ou senha incorretos!</h5>
+          </div>
+
         <?php } ?>
+
         <figure class="row justify-content-center">
             <img class="" src="imgs/img_pgn/logotipo.png">
         </figure>
@@ -37,13 +50,24 @@
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav container col-5">
                 <a class="nav-item nav-link anav ativo" href="index.html">Inicio</a>
                 <a class="nav-item nav-link anav" href="sobre_nos.html">Sobre-nós</a>
                 <a class="nav-item nav-link anav" href="#">Contate-nos</a>
-                <a class="nav-item nav-link anav" href="#">Perfil</a>
+
+                <?php if($auth){ ?>
+                  <a class="nav-item nav-link anav" href="#">
+                    <img src="imgs/img_perfis/<?= $usuario['cd_img_perfil']; ?>" alt="imagem de perfil" id="img_perfil">
+                    Perfil
+                  </a>
+              <?php } ?>
             </div>
+
+            <?php if($auth) { ?>
+              <a href="controle/logoutControle.php" class="text-danger text-right">Sair</a>
+            <?php } ?>
         </div>
     </nav>
 

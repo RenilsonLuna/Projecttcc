@@ -144,6 +144,7 @@ p.card-text {
     border-radius: 10px;
     border: none;
     box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.75);
+    padding-left: 8px;
 }
 
 .aform{
@@ -163,6 +164,8 @@ p.card-text {
     padding: 0 20px 0 20px;
 }
 
+/* ----------- renilson adds -------------- */
+
 .loginAlert{
   position: absolute;
   left: 17%;
@@ -180,4 +183,12 @@ p.card-text {
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
   border-right: 20px solid #f8d7da;
+}
+
+#img_perfil{
+  object-fit:cover;
+  object-position: top;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
 }
