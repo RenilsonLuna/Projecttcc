@@ -1,8 +1,6 @@
 <?php
 
-require_once "autoload.php";
-require "../Classes/Database.php";
-require "../Classes/Usuario.php";
+require_once "../vendor/autoload.php";
 use Classes\Usuario;
 use Classes\Database;
 
