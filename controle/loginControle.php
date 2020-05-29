@@ -1,8 +1,10 @@
 <?php
-
-session_start();
-
 require "../vendor/autoload.php";
+
+$sessionConfig = (new \ByJG\Session\SessionConfig('localhost/tcc'))
+  ->withSecret('123456789')
+  ->replaceSessionHandler();
+$handler = new \ByJG\Session\JwtSession($sessionConfig);
 
 use Classes\Usuario;
 use Classes\Database;
@@ -29,6 +31,6 @@ if($log == false) {
 
 // autenticando usuário
 $_SESSION['auth'] = true;
-$_SESSION['usuario'] = $log;
+$_SESSION['usuario'] = $log[0];
 
 header('location: ../index.php');
