@@ -21,7 +21,7 @@ require "controle/homeControle.php";
 
       <?php if(!$auth) { ?>
 
-        <div class="login position-absolute d-flex justify-content-end">
+        <div class="login">
             <form class="" method="post" action="controle/loginControle.php">
                 <input class="input-login m-2" placeholder="Usuário" type="email" id="" name="email"><br>
                 <input class="input-login m-2" placeholder="Senha" type="password" id="" name="senha">
@@ -32,13 +32,20 @@ require "controle/homeControle.php";
 
       <?php } ?>
 
-      <?php if(isset($_GET['erro']) && $_GET['erro'] == 1 && !$auth) { ?>
+      <?php if(isset($_GET['erro']) && !$auth) {
 
-          <div class="alert alert-danger col-md-3 col-sm-6 loginAlert" role="alert" id="alerta">
-              <h5>Usuário ou senha incorretos!</h5>
-          </div>
-
-        <?php } ?>
+        switch($_GET['erro']){
+            case 1:
+              echo '<div class="alert alert-danger col-md-4 col-lg-2 col-sm-4 text-center" role="alert" id="alerta">
+                <h5>Usuário ou senha incorretos!</h5></div>';
+              break;
+            case 2:
+              echo '<div class="alert alert-danger col-md-4 col-lg-2 col-sm-4 text-center" role="alert" id="alerta">
+                <h5>Preencha todos os campos!</h5></div>';
+              break;
+            }
+        }
+        ?>
 
         <figure class="row justify-content-center">
             <img class="" src="imgs/img_pgn/logotipo.png">
@@ -66,7 +73,7 @@ require "controle/homeControle.php";
             </div>
 
             <?php if($auth) { ?>
-              <a href="controle/logoutControle.php" class="text-danger text-right">Sair</a>
+              <a href="controle/logoutControle.php" class="text-light text-right btn-sair btn btn-danger">Sair</a>
             <?php } ?>
         </div>
     </nav>
@@ -98,38 +105,40 @@ require "controle/homeControle.php";
 
         </div>
 
-        <div class="card float-left">
-            <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h3 class="card-title mb-1">Card title</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content. Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-card">Ver mais</a>
+        <main class="container-fluid d-md-flex justify-content-center">
+            <div class="card">
+                <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title mb-1">Card title</h3>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content. Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-card">Ver mais</a>
+                </div>
             </div>
-        </div>
 
-        <div class="card float-left  ">
-            <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h3 class="card-title mb-1">Card title</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content. Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-card">Ver mais</a>
+            <div class="card">
+                <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title mb-1">Card title</h3>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content. Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-card">Ver mais</a>
+                </div>
             </div>
-        </div>
 
-        <div class="card float-left  ">
-            <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h3 class="card-title mb-1">Card title</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content. Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-card">Ver mais</a>
+            <div class="card">
+                <img src="imgs/img_pgn/shutterstock_652925827.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title mb-1">Card title</h3>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content. Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-card">Ver mais</a>
+                </div>
             </div>
-        </div>
+        </main>
 
 
         <div class="row container-fluid justify-content-center mt-5">
@@ -138,20 +147,17 @@ require "controle/homeControle.php";
 
     </div>
 
-    <div class="footer-page footer1 mt-3">
-        <div class="justify-content-center container-fluid row">
+    <footer class="page-footer footer-page mt-3">
+        <div class="justify-content-center container-fluid d-flex">
             <a class="icon m-3" href=""></a>
             <a class="icon m-3" href=""></a>
             <a class="icon m-3" href=""></a>
             <a class="icon m-3" href=""></a>
         </div>
-    </div>
-
-    <div class="footer2 footer-page">
-        <div class="justify-content-center container-fluid row">
+        <div class="justify-content-center container-fluid d-flex">
             <p class="copyright pt-3">© Copyright 2020 Weact - All Rights Reserved</p>
         </div>
-    </div>
+    </footer>
 
     <script type="text/javascript">
         const alerta = document.getElementById('alerta');

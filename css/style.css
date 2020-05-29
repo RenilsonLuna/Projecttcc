@@ -97,19 +97,24 @@ p.card-text {
 
 .footer-page {
     background-color: #05286F;
-    align-items: center;
+}
+
+/* inicio footer */
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 100%;
 }
 
-.footer1{
-    height: 100px;
+footer {
+    margin-top: auto;
 }
-
-.footer2{
-    height: 50px;
-}
+/* fim footer */
 
 .text-footer {
     color: white;
@@ -136,6 +141,9 @@ p.card-text {
     height: 110px;
     background-color: #e7e7e7;
     border-radius: 0% 0% 10px 10px;
+
+    position: absolute;
+    right: 5%;
 }
 
 .input-login{
@@ -166,23 +174,11 @@ p.card-text {
 
 /* ----------- renilson adds -------------- */
 
-.loginAlert{
+#alerta{
   position: absolute;
-  left: 17%;
+  right: 25%;
   top: 7%;
-}
-.loginAlert:before {
-  position: absolute;
-  content: "";
-  display: inline-block;
-  margin-left: -37px;
-  margin-top: -13px;
-  width: 0;
-  height: 0;
-
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid #f8d7da;
+  box-shadow: 3px 5px 3px rgba(0, 0, 0, .2);
 }
 
 #img_perfil{
@@ -191,4 +187,11 @@ p.card-text {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
+}
+
+@media only screen and (max-width: 550px){
+  #alerta{
+    left: 0;
+    top: 0;
+  }
 }

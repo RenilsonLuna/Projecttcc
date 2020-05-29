@@ -15,13 +15,15 @@ $senha = $_POST['senha'];
 
 
 if(empty($email) || empty($senha)){
-  echo "campos vazios";
+    header('location: ../index.php?erro=2');
+    return false;
 }
 
 $log = $usuario->logar($email, $senha);
 
 if($log == false) {
-  echo "usuario inexistente";
+  header('location: ../index.php?erro=1');
+  return false;
 }
 
 
