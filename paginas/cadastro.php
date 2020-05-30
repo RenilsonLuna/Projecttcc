@@ -11,6 +11,26 @@
 	</head>
   <body>
 
+    <header class="bg-light">
+      <figure class="d-flex justify-content-center">
+          <img class="" src="../imgs/img_pgn/logotipo.png" width="150">
+      </figure>
+
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light nave">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav container col-5">
+                <a class="nav-item nav-link anav ativo" href="../index.php">Inicio</a>
+                <a class="nav-item nav-link anav" href="sobre_nos.html">Sobre-nós</a>
+                <a class="nav-item nav-link anav" href="#">Contate-nos</a>
+            </div>
+        </div>
+    </nav>
 		<main class="container d-flex justify-content-center bg-light shadow-sm rounded my-3">
 			<div class="content">
 				<h1 class="text-center my-3">Cadastre-se</h1>
@@ -33,11 +53,11 @@
             </div>
           </div>
 
-          <label class="col-md-5">  Nome <input class="form-control" type="text" name="nm_usuario" placeholder="Digite o nome da instituição"> </label>
-          <label class="col-md-6">  CNPJ  <input class="form-control" type="text" name="CNPJ"  placeholder="*Digite apenas números">  </label>
-          <label class="col-md-7"> CPF <input type="text" class="form-control" name="cpf" placeholder="*Digite apenas números"> </label>
-          <label class="col-md-4"> CEP <input type="text" onblur="getDadosCep(this.value)" name="" placeholder="*Digite apenas numeros" class="form-control"> </label>
-          <label class="col-md-9"> E-mail <input class="form-control" type="email" name="email" placeholder="usuario@usuario.com"> </label>
+          <label class="col-md-5">  Nome <input class="form-control" type="text" name="nm_usuario" placeholder="Digite o nome da instituição" required> </label>
+          <label class="col-md-6">  CNPJ  <input class="form-control" type="text" name="CNPJ"  placeholder="*Digite apenas números" required></label>
+          <label class="col-md-4"> CPF <input type="text" class="form-control" name="cpf" placeholder="*Digite apenas números" required> </label>
+          <label class="col-md-7"> E-mail <input class="form-control" type="email" name="email" placeholder="usuario@usuario.com" required> </label>
+          <label class="col-md-4"> CEP <input type="text" onblur="getDadosCep(this.value)" name="" placeholder="*Digite apenas numeros" class="form-control" required> </label>
 
           <?php if (isset($_GET['erro']) && $_GET['erro'] == 3) { ?>
             <div class="alert alert-danger col-4 text-center shadow" id="alerta" role="alert">
@@ -45,12 +65,12 @@
             </div>
           <?php  } ?>
 
-          <label class="col-md-7"> Endereço <input id="logadouro" disabled class="form-control" type="text" name="endereco" value="Endereço" > </label>
-          <label class="col-md-4"> Bairro <input id="bairro" disabled class="form-control" type="text" name="bairro" value="Bairro" > </label>
-          <label class="col-md-7"> Cidade <input id="cidade" disabled class="form-control" type="text" name="cidade" value="Cidade" > </label>
-          <label class="col-md-4"> Estado <input id="estado" disabled class="form-control" type="text" name="estado" value="Estado" > </label>
-          <label class="col-md-5">Senha <input class="form-control" type="password" name="Senha" placeholder="Digite sua senha"></label>
-          <label class="col-md-5">Senha <input class="form-control" type="password" name="Senha" placeholder="Confirme sua senha"></label>
+          <label class="col-md-6"> Endereço <input id="logadouro" disabled class="form-control" type="text" name="endereco" value="Endereço"> </label>
+          <label class="col-md-3"> Bairro <input id="bairro" disabled class="form-control" type="text" name="bairro" value="Bairro"> </label>
+          <label class="col-md-4"> Cidade <input id="cidade" disabled class="form-control" type="text" name="cidade" value="Cidade"> </label>
+          <label class="col-md-4"> Estado <input id="estado" disabled class="form-control" type="text" name="estado" value="Estado"> </label>
+          <label class="col-md-6">Senha <input class="form-control" type="password" name="Senha" placeholder="Digite sua senha" required></label>
+          <label class="col-md-5">Confirmação de Senha <input class="form-control" type="password" name="Senha" placeholder="Confirme sua senha" required></label>
 
           <div class="col-6 img_perfil">
             <h5>Foto de perfil</h5>
@@ -83,51 +103,18 @@
 			</div>
 		</main>
 
-    <script type="text/javascript">
+    <footer class="page-footer mt-3">
+        <div class="justify-content-center container-fluid d-flex">
+            <a class="icon m-3" href=""></a>
+            <a class="icon m-3" href=""></a>
+            <a class="icon m-3" href=""></a>
+            <a class="icon m-3" href=""></a>
+        </div>
+        <div class="justify-content-center container-fluid d-flex">
+            <p class="copyright pt-3">© Copyright 2020 Weact - All Rights Reserved</p>
+        </div>
+    </footer>
 
-        const input = document.getElementById("img_perfil")
-        const img = document.getElementById("img_usuario")
-        const img2 = document.getElementById("img_usuario2")
-        const img3 = document.getElementById("img_usuario3")
-        const alert = document.getElementById('alerta')
-
-        setTimeout(function(){
-          alert.style = "display: none"
-        }, 3000)
-
-        input.addEventListener('change', function() {
-
-          const file = this.files[0]
-          const fileReader = new FileReader()
-
-          fileReader.onloadend = () => {
-            img.setAttribute('src', fileReader.result)
-            img2.setAttribute('src', fileReader.result)
-            img3.setAttribute('src', fileReader.result)
-          }
-          fileReader.readAsDataURL(file)
-        })
-
-        function getDadosCep(cep){
-
-    			const url = `https://viacep.com.br/ws/${cep}/json/unicode/`;
-    			const ajax = new XMLHttpRequest();
-    			ajax.open('GET', url);
-    			ajax.onreadystatechange = () => {
-
-    				if (ajax.readyState == 4 && ajax.status == 200) {
-    					const dadosText = ajax.responseText;
-    					const dadosJson = JSON.parse(dadosText);
-
-              document.getElementById('cidade').value = dadosJson.localidade;
-    					document.getElementById('estado').value = dadosJson.uf;
-    					document.getElementById('bairro').value = dadosJson.bairro;
-    					document.getElementById('logadouro').value = dadosJson.logradouro;
-    				}
-    			}
-    			ajax.send();
-    		}
-
-    </script>
+    <script type="text/javascript" src="../js/cadastro.js"></script>
 	</body>
 </html>

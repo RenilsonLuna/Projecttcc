@@ -17,6 +17,35 @@ label{
   margin-bottom: 20px;
   font-family: Arial;
 }
+.center{
+    max-width: 1024px;
+    margin: auto;
+}
+
+.toptop{
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.nave {
+    background-color: #ff7600 !important;
+    box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+.anav {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: large;
+}
+
+.txt-a {
+    text-align: center;
+}
+
+.nav-item:hover {
+    color: #05286F !important;
+}
+
 
 #img_perfil{
   display: none;
@@ -55,5 +84,17 @@ label{
   transform: scale(1.1);
   z-index: 2;
   position: fixed;
-  margin-left: calc(16%)
+  margin-left: calc(11%)
+}
+
+footer {
+    margin-top: auto;
+    color: white;
+    background-color: #05286F;
+}
+footer .icon{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
 }
