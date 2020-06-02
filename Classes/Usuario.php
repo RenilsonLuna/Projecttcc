@@ -43,16 +43,16 @@ class Usuario
 	    }
 	}
 
-	public function cadastrar($nome, $email, $senha, $cnpj, $cpf, $img, $tipo)
+	public function cadastrar($nome, $email, $senha, $cpfCnpj, $img, $tipo, $cep)
 	{
 		$this->conexao->insert('tb_usuarios', [
 			'nm_usuario' => $nome,
 			'cd_email_usuario' => $email,
 			'cd_senha_usuario' => $senha,
 			'cd_tipo_usuario' => $tipo,
-			'cd_cnpj_usuario' => $cnpj,
-			'cd_cpf_usuario' => $cpf,
-			'cd_img_perfil' => $img
+			'cd_cpf_cnpj' => $cpfCnpj,
+			'cd_img_perfil' => $img,
+			'cd_cep_usuario' => $cep
 
 		]);
 	}

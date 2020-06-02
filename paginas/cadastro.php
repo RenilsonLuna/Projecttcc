@@ -35,58 +35,86 @@
 			<div class="content">
 				<h1 class="text-center my-3">Cadastre-se</h1>
 
-				<form class="formulario form-group d-sm-block" action="../controle/cadastroControle.php" method="post">
+				<form class="formulario form-group d-sm-block" action="../controle/cadastroControle.php" method="POST" enctype="multipart/form-data">
 
           <div class="radios ml-3 mb-4">
             <h4>Tipo</h4>
             <div class="form-check col-6">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-              <label class="form-check-label" for="exampleRadios1">
+              <input class="form-check-input" type="radio" name="tipo" id="usuario" value="Usuario" checked>
+              <label class="form-check-label" for="usuario">
                 Usuario
               </label>
             </div>
             <div class="form-check col-6">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-              <label class="form-check-label" for="exampleRadios2">
+              <input class="form-check-input" type="radio" name="tipo" id="instituicao" value="Instituicao">
+              <label class="form-check-label" for="instituicao">
                 Instituição
               </label>
             </div>
           </div>
 
-          <label class="col-md-5">  Nome <input class="form-control" type="text" name="nm_usuario" placeholder="Digite o nome da instituição" required> </label>
-          <label class="col-md-6">  CNPJ  <input class="form-control" type="text" name="CNPJ"  placeholder="*Digite apenas números" required></label>
-          <label class="col-md-4"> CPF <input type="text" class="form-control" name="cpf" placeholder="*Digite apenas números" required> </label>
-          <label class="col-md-7"> E-mail <input class="form-control" type="email" name="email" placeholder="usuario@usuario.com" required> </label>
-          <label class="col-md-4"> CEP <input type="text" onblur="getDadosCep(this.value)" name="" placeholder="*Digite apenas numeros" class="form-control" required> </label>
+          <label class="col-md-5">  Nome <input class="form-control" type="text" name="nome" placeholder="Digite o nome da instituição" required> </label>
+          <label class="col-md-6"> E-mail <input class="form-control" type="email" name="email" placeholder="usuario@usuario.com" required> </label>
+          <div>
+            <label class="col-md-5 float-left" id="cpf"> CPF/CNPJ <input type="text" class="form-control" name="cpf" placeholder="*Digite apenas números">
+            <?php if (isset($_GET['erro']) && $_GET['erro'] == 4) { echo '<div class="alert alert-danger col-4 text-center shadow" id="alerta" role="alert">
+              Digite um CPF/CNPJ válido!
+            </div>'; } ?>
+          </div>
+          </label>
+          <label class="col-md-6"> CEP <input type="text" onblur="getDadosCep(this.value)" name="cep" placeholder="*Digite apenas numeros" class="form-control" required> </label>
 
-          <?php if (isset($_GET['erro']) && $_GET['erro'] == 3) { ?>
-            <div class="alert alert-danger col-4 text-center shadow" id="alerta" role="alert">
-              Preencha todos os campos!
-            </div>
-          <?php  } ?>
+          <?php if (isset($_GET['erro'])) {
+
+            switch($_GET['erro']){
+                case 2:
+                  echo '<div class="alert alert-danger col-4 text-center shadow" id="alerta" role="alert">
+                    Este Usuário já existe!
+                  </div>';
+                  break;
+                case 3:
+                  echo '<div class="alert alert-danger text-center shadow" id="alerta" role="alert">
+                    Preencha todos os campos e adicione uma imagem.
+                  </div>';
+                break;
+              }
+            } ?>
 
           <label class="col-md-6"> Endereço <input id="logadouro" disabled class="form-control" type="text" name="endereco" value="Endereço"> </label>
-          <label class="col-md-3"> Bairro <input id="bairro" disabled class="form-control" type="text" name="bairro" value="Bairro"> </label>
-          <label class="col-md-4"> Cidade <input id="cidade" disabled class="form-control" type="text" name="cidade" value="Cidade"> </label>
-          <label class="col-md-4"> Estado <input id="estado" disabled class="form-control" type="text" name="estado" value="Estado"> </label>
-          <label class="col-md-6">Senha <input class="form-control" type="password" name="Senha" placeholder="Digite sua senha" required></label>
-          <label class="col-md-5">Confirmação de Senha <input class="form-control" type="password" name="Senha" placeholder="Confirme sua senha" required></label>
+          <label class="col-md-5"> Bairro <input id="bairro" disabled class="form-control" type="text" name="bairro" value="Bairro"> </label>
+          <label class="col-md-6"> Cidade <input id="cidade" disabled class="form-control" type="text" name="cidade" value="Cidade"> </label>
+          <label class="col-md-5"> Estado <input id="estado" disabled class="form-control" type="text" name="estado" value="Estado"> </label>
+
+          <label class="col-md-5 float-left">Senha<input class="form-control" type="password" name="senha" placeholder="Digite sua senha" required></label>
+
+          <div>
+            <label class="col-md-6">Confirmação de Senha
+              <input class="form-control" name="conf" type="password" placeholder="Confirme sua senha" required>
+              <?php if (isset($_GET['erro']) && $_GET['erro'] == 5) { echo '<small class="text-danger">As senhas precisam ser iguais!</small>'; } ?>
+            </label>
+          </div>
+
 
           <div class="col-6 img_perfil">
             <h5>Foto de perfil</h5>
+
             <div class="mb-3 d-flex img-group" id="img-group">
+
               <figure class="figures">
                 <figcaption>150px</figcaption>
                 <img id="img_usuario" class="perfil" width="150">
               </figure>
+
               <figure class="figures">
                 <figcaption>100px</figcaption>
                 <img id="img_usuario2" class="perfil p2" width="100">
               </figure>
+
               <figure class="figures">
                 <figcaption>50px</figcaption>
                 <img id="img_usuario3" class="perfil p3" width="50">
               </figure>
+
             </div>
 
             <input type="file" id="img_perfil" class="form-control" name="img_perfil">

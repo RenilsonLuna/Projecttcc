@@ -2,7 +2,8 @@
     "name": "vendor/tcc",
     "require": {
         "php": "^7.2",
-        "byjg/jwt-session": "^2.0"
+        "byjg/jwt-session": "^2.0",
+        "respect/validation": "^2.0"
     },
     "license": "mit",
     "authors": [

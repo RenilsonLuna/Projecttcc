@@ -14,7 +14,7 @@ body {
 }
 
 label{
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-family: Arial;
 }
 .center{
@@ -84,7 +84,8 @@ label{
   transform: scale(1.1);
   z-index: 2;
   position: fixed;
-  margin-left: calc(11%)
+  width: 500px;
+  margin-left: 11%;
 }
 
 footer {

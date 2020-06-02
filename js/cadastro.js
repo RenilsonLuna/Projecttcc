@@ -1,4 +1,6 @@
 
+// colocando foto no input
+
 const input = document.getElementById("img_perfil")
 const img = document.getElementById("img_usuario")
 const img2 = document.getElementById("img_usuario2")
@@ -6,7 +8,9 @@ const img3 = document.getElementById("img_usuario3")
 const alert = document.getElementById('alerta')
 
 setTimeout(function(){
-  alert.style = "display: none"
+  if (alert) {
+    alert.style = "display: none"
+  }
 }, 3000)
 
 input.addEventListener('change', function() {
@@ -21,6 +25,8 @@ input.addEventListener('change', function() {
   }
   fileReader.readAsDataURL(file)
 })
+
+// requisicao ajax com o cep
 
 function getDadosCep(cep){
 
