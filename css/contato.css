@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+main{
+  background-image: url("../imgs/img_pgn/contato-bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main .conteudo{
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  margin: auto;
+}
+
+.btn-enviar{
+  background-color: #ff7600;
+  color: white;
+  width: 100px;
+}

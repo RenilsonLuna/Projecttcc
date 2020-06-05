@@ -31,6 +31,6 @@ if($log == false) {
 
 // autenticando usuário
 $_SESSION['auth'] = true;
-$_SESSION['usuario'] = $log[0];
+$_SESSION['usuario'] = $log[0]['cd_usuario'];
 
 header('location: ../index.php');
