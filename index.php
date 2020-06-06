@@ -61,8 +61,8 @@ require "controle/homeControle.php";
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav container col-5">
                 <a class="nav-item nav-link anav ativo" href="index.php">Inicio</a>
-                <a class="nav-item nav-link anav" href="paginas/sobre_nos.html">Sobre-nós</a>
-                <a class="nav-item nav-link anav" href="#">Contate-nos</a>
+                <a class="nav-item nav-link anav" href="paginas/sobre_nos.html">Sobre nós</a>
+                <a class="nav-item nav-link anav" href="paginas/contato.php">Contate-nos</a>
 
                 <?php if($auth){ ?>
                   <a class="nav-item nav-link anav" href="#">

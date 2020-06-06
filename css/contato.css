@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
-main{
+*{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+body{
   background-image: url("../imgs/img_pgn/contato-bg.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,4 +21,31 @@ main .conteudo{
   background-color: #ff7600;
   color: white;
   width: 100px;
+}
+
+main .alert {
+  z-index: 3;
+  position: fixed;
+  width: 500px;
+  margin-left: calc(25% - 250px);
+}
+
+header .login {
+  position: absolute;
+  top: 10px;
+}
+
+@media only screen and (max-width: 768px){
+  body{
+    background-image: url();
+  }
+
+  main .conteudo{
+    shadow: 0;
+  }
+
+  main .alert {
+    z-index: 3;
+  }
+
 }
