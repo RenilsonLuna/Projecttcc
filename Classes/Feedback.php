@@ -35,4 +35,6 @@ class Feedback
         'cd_mensagem' => $mensagem
       ]);
     }
+
+    // ---------------- #FUTURAS RECUPERAÇÕES -------------------
 }

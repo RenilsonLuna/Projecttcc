@@ -189,6 +189,11 @@ footer {
   border-radius: 50%;
 }
 
+header .login {
+  position: absolute;
+  top: 10px;
+}
+
 @media only screen and (max-width: 550px){
   #alerta{
     left: 0;

@@ -58,6 +58,7 @@ require "controle/homeControle.php";
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <a href="paginas/evento.php">Evento</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav container col-5">
                 <a class="nav-item nav-link anav ativo" href="index.php">Inicio</a>
