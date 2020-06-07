@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 .jumbotron{
   height: 400px;
   background-image: url("../imgs/img_eventos/evento.jpeg");
@@ -61,4 +66,23 @@ main .content .btn{
   color: white;
   width: 150px;
   margin-left: calc(50% - 75px);
+}
+
+@media only screen and (max-width: 900px){
+
+  .jumbotron{
+    display: none;
+  }
+  .img-evento{
+    position: inherit;
+    margin: 0;
+  }
+
+  .content{
+    position: relative;
+    margin: auto;
+    left: 0;
+    margin-top: 30px;
+  }
+
 }
