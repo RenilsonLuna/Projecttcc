@@ -6,8 +6,6 @@ class Usuario
 {
 	private $id;
 	private $name;
-	private $email;
-	private $cnpj;
 	private $conexao;
 
 

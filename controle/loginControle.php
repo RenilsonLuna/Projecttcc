@@ -33,4 +33,6 @@ if($log == false) {
 $_SESSION['auth'] = true;
 $_SESSION['usuario'] = $log[0]['cd_usuario'];
 
-header('location: ../index.php');
+$pgnAnterior = $_SERVER['HTTP_REFERER'];
+
+header(sprintf('location: %s', $pgnAnterior));

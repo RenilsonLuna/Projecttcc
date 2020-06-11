@@ -45,7 +45,7 @@ img {
     color: #05286F !important;
 }
 
-.btn-card:hover {
+.btn:hover {
     color: #05286F !important;
 }
 
@@ -70,13 +70,6 @@ img {
     width: 260px;
     border-radius: 10px !important;
     margin: 40px;
-}
-
-.btn-card {
-    background-color: #ff7600 !important;
-    color: white !important;
-    border: solid white 1px !important;
-    border-radius: 10px !important;
 
 }
 
@@ -192,6 +185,19 @@ footer {
 header .login {
   position: absolute;
   top: 10px;
+}
+
+.card .btn {
+
+  background-color: #ff7600 !important;
+  color: white !important;
+  border: solid white 1px !important;
+  border-radius: 10px !important;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+
+
 }
 
 @media only screen and (max-width: 550px){
