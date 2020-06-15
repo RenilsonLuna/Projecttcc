@@ -1,7 +1,5 @@
 <?php
 
-require "../vendor/autoload.php";
-
 if (isset($_SESSION['auth']) && $_SESSION['auth'] == true) {
   $auth = true;
 }else {

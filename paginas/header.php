@@ -1,18 +1,37 @@
+<script src="../js/desaparece.js" charset="utf-8"></script>
 <header class="container col-12 py-2" style="background-color: white;">
-    <figure class="row justify-content-center">
-        <img class="" src="../imgs/img_pgn/logotipo.png">
-    </figure>
-    <?php if(!$auth) { ?>
 
-      <div class="login">
-          <form class="" method="post" action="../controle/loginControle.php">
-              <input class="input-login m-2" placeholder="Usuário" type="email" id="" name="email"><br>
-              <input class="input-login m-2" placeholder="Senha" type="password" id="" name="senha">
-              <a href="../paginas/cadastro.php" class="aform ml-2">Cadastre-se já</a>
-              <input class="btnlogin ml-5" type="submit" value="Entrar">
-          </form>
-      </div>
-    <?php } ?>
+  <figure class="row justify-content-center">
+    <img class="" src="../imgs/img_pgn/logotipo.png">
+  </figure>
+
+  <?php if(!$auth) { ?>
+    <div class="login">
+      <form class="" method="post" action="../controle/loginControle.php">
+        <input class="input-login m-2" placeholder="Usuário" type="email" id="" name="email">
+        <br>
+        <input class="input-login m-2" placeholder="Senha" type="password" id="" name="senha">
+        <a href="../paginas/cadastro.php" class="aform ml-2">Cadastre-se já</a>
+        <input class="btnlogin ml-3" type="submit" value="Entrar">
+      </form>
+    </div>
+  <?php } ?>
+
+    <?php if(isset($_GET['erro']) && !$auth) {
+
+      switch($_GET['erro']){
+          case 1:
+            echo '<div class="alert alert-danger col-md-4 col-lg-2 col-sm-4 text-center" role="alert" id="alerta">
+              <h5>Usuário ou senha incorretos!</h5></div>';
+            break;
+          case 2:
+            echo '<div class="alert alert-danger col-md-4 col-lg-2 col-sm-4 text-center" role="alert" id="alerta">
+              <h5>Preencha todos os campos!</h5></div>';
+            break;
+          }
+      }
+    ?>
+
 </header>
 
 <nav class="navbar navbar-expand-lg navbar-light nave">
@@ -26,6 +45,7 @@
             <a class="nav-item nav-link anav ativo" href="../index.php">Inicio</a>
             <a class="nav-item nav-link anav" href="../paginas/sobre_nos.html">Sobre nós</a>
             <a class="nav-item nav-link anav" href="contato.php">Contate-nos</a>
+            <a class="nav-item nav-link text-right active" href="../paginas/criarEvento.php">Criar Evento</a>
               <?php if ($auth) { ?>
 
                 <a class="nav-item nav-link anav" href="perfil.php">

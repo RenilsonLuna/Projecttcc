@@ -13,6 +13,7 @@ setTimeout(function(){
   }
 }, 3000)
 
+// add img
 input.addEventListener('change', function() {
 
   const file = this.files[0]

@@ -88,7 +88,8 @@ require "controle/homeControle.php";
                   <h4 class="card-title"><?= $v->nm_evento ?></h4>
                   <p class="card-text"><?= $v->ds_evento ?></p>
                 </div>
-                <button class="btn" onclick="redirect(<?= $v->cd_evento ?>)">Ver mais</button>
+                <button class="btn" onclick="redirect(<?=
+                $v->cd_evento?>)">Ver mais</button>
               </div>
 
             <?php endforeach; ?>
@@ -122,7 +123,6 @@ require "controle/homeControle.php";
         function redirect(id){
           window.location.href = `./paginas/eventos.php?id=${id}`;
         }
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -137,5 +137,4 @@ require "controle/homeControle.php";
 
     <script src="js/carregarMais.js" charset="utf-8"></script>
 </body>
-
 </html>

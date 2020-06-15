@@ -45,4 +45,21 @@ class Evento
   {
     return $this->conexao->select('SELECT * FROM tb_eventos');
   }
+
+  public function criarEvento($nome, $criador, $dt, $ds, $hr, $endereco, $img, $requisitos)
+  {
+    $this->conexao->insert('tb_eventos', [
+
+      'cd_criador_evento' => $criador,
+      'nm_evento' => $nome,
+      'dt_evento' => $dt,
+      'ds_evento' => $ds,
+      'hr_evento' => $hr,
+      'cd_endereco_evento' => $endereco,
+      'cd_img_evento' => $img,
+      'cd_requisitos' => $requisitos
+
+    ]);
+  }
+
 }

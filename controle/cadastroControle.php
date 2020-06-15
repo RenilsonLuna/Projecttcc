@@ -34,9 +34,6 @@ $tipoUsuario = $_POST['tipo'];
 $cep = $_POST['cep'];
 $img = $_FILES['img_perfil'];
 
-echo "<pre>";
-print_r($_POST);
-
 
 // verificando campos vazios
 foreach ($_POST as $key) {
@@ -73,9 +70,9 @@ if (!$validPass) {
 }
 
 // img de perfil
-
 if (empty($_FILES)) {
-  echo "img vazia";
+  header('location: ../paginas/cadastro.php?erro=3');
+  return false;
 }
 $formatosPermitidos = array('png', 'jpg', 'jpeg');
 $extensao = pathinfo($img['name'], PATHINFO_EXTENSION);
@@ -91,6 +88,8 @@ if (in_array($extensao, $formatosPermitidos)) {
   }else {
     echo "deu ruim";
   }
+}else{
+  header('location: ../paginas/cadastro.php?erro=6')
 }
 
 // puxando usuarios existentes

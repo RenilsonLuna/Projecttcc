@@ -77,6 +77,11 @@
                     Preencha todos os campos e adicione uma imagem.
                   </div>';
                 break;
+                case 6:
+                  echo '<div class="alert alert-danger text-center shadow" id="alerta" role="alert">
+                    Formato de imagem não permitido
+                  </div>';
+                  break;
               }
             } ?>
 
@@ -101,18 +106,16 @@
             <div class="mb-3 d-flex img-group" id="img-group">
 
               <figure class="figures">
-                <figcaption>150px</figcaption>
-                <img id="img_usuario" class="perfil" width="150">
+                <img id="img_usuario" class="perfil" width="150" alt="imagem com 150px">
               </figure>
 
               <figure class="figures">
-                <figcaption>100px</figcaption>
-                <img id="img_usuario2" class="perfil p2" width="100">
+                <img id="img_usuario2" class="perfil p2" width="100" alt="imagem com 100px">
               </figure>
 
               <figure class="figures">
-                <figcaption>50px</figcaption>
-                <img id="img_usuario3" class="perfil p3" width="50">
+                <figcaption></figcaption>
+                <img id="img_usuario3" class="perfil p3" width="50" alt="imagem com 50px">
               </figure>
 
             </div>

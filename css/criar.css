@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+body {
+    background-color: #ccc;
+}
+
+input{
+  margin-bottom: 30px;
+  font-family: Arial;
+  float: left;
+}
+
+.img-label{
+  width: 300px;
+  height: 60px;
+}
+
+#img_usuario{
+  height: 250px;
+}
+
+.btn-enviar{
+  background-color: #ff7600;
+  color: white;
+  margin: auto;
+  position: relative;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+}
+
+@media only screen and (max-width: 1000px)
+{
+  #img_usuario{
+    object-fit: cover;
+    object-position: top;
+  }
+}

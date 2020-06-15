@@ -11,7 +11,7 @@ header {
     height: 120px;
 }
 
-img {
+header img {
     width: 149px;
     height: 120px;
 }
@@ -84,7 +84,7 @@ img {
     height: 175px;
 }
 
-p.card-text {
+.card-text {
     margin-bottom: 20px;
 }
 
