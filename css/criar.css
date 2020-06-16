@@ -5,11 +5,12 @@ body {
     background-color: #ccc;
 }
 
-input{
+form label{
   margin-bottom: 30px;
   font-family: Arial;
   float: left;
 }
+
 
 .img-label{
   width: 300px;
@@ -28,6 +29,10 @@ input{
   width: 200px;
   left: 50%;
   margin-left: -100px;
+}
+
+.ds-img{
+    margin-left: 1rem;
 }
 
 @media only screen and (max-width: 1000px)

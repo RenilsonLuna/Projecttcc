@@ -36,22 +36,22 @@
               switch($_GET['erro']){
 
                   case 1:
-                    echo '<div class="alert alert-danger col-4 text-center shadow" id="alerta" role="alert">
+                    echo '<div class="alert alert-danger col-6 text-center shadow" id="alerta" role="alert">
                       Preencha todos os campos!
                     </div>';
                     break;
                   case 3:
-                    echo '<div class="alert alert-danger text-center shadow" id="alerta" role="alert">
+                    echo '<div class="alert alert-danger col-6 text-center shadow" id="alerta" role="alert">
                       Adicione uma imagem.
                     </div>';
                   break;
                   case 4:
-                    echo '<div class="alert alert-danger text-center shadow" id="alerta" role="alert">
+                    echo '<div class="alert alert-danger col-6 text-center shadow" id="alerta" role="alert">
                       Formato de imagem não permitido
                     </div>';
                     break;
                   case 5:
-                    echo '<div class="alert alert-danger text-center shadow" id="alerta" role="alert">
+                    echo '<div class="alert alert-danger col-6 text-center shadow" id="alerta" role="alert">
                       Falha no upload da imagem.
                     </div>';
                     break;
@@ -65,8 +65,8 @@
             <label class="col-12"> Descrição <textarea class="form-control" name="descricao" rows="5" placeholder="Adicione uma descrição para que entendam seu evento..." ></textarea></label>
             <label class="col-12"> Requisitos <textarea class="form-control" name="requisitos" placeholder="Quais os requisitos para participar?" rows="3"></textarea></label>
 
+            <p class="ds-img">Foto do evento</p>
             <figure class="col-md-6">
-              <figcaption>Foto do evento</figcaption>
               <img id="img_usuario" class="perfil form-control" alt="imagem do evento">
             </figure>
 
