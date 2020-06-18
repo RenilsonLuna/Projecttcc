@@ -102,7 +102,7 @@ require "controle/homeControle.php";
 
     </div>
 
-    <footer class="page-footer footer-page mt-3">
+    <footer class="page-footer footer-page">
         <div class="justify-content-center container-fluid d-flex">
             <a class="icon m-3" href=""></a>
             <a class="icon m-3" href=""></a>

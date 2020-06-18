@@ -44,7 +44,7 @@ $log = $usuario->logar($email, $senha);
 
 // verificando log
 if($log == false) {
-  header(sprintf('location: %s%serro=1', $pgnAnterior));
+  header(sprintf('location: %s%serro=1', $pgnAnterior, $separador));
   return false;
 }
 

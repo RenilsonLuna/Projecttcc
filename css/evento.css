@@ -62,12 +62,17 @@ main .content .icone{
   object-position: center;
 }
 
-main .content .btn{
+main .content .bttn{
   background-color: #ff7600;
   border-raius: 6px;
   color: white;
   width: 150px;
   margin-left: calc(50% - 75px);
+}
+
+.cancelar {
+  width: 300px;
+  margin-left: calc(50% - 150px);
 }
 
 @media only screen and (max-width: 900px){

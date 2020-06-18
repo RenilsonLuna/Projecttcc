@@ -12,7 +12,7 @@
   </head>
   <body>
     <?php include "header.php" ?>
-
+a
     <div  class="jumbotron">
       <img class="img-jumbotron" src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" alt="imagem do evento">
     </div>
@@ -38,8 +38,12 @@
           </div>
 
           <?php if ($auth): ?>
-
-            <button class="btn border" type="button" name="participar">Participar</button>
+            <?php if (!$participante): ?>
+              <button class="btn bttn border" type="button" name="participar" onclick="participar(<?= $evento->cd_evento ?>)">Participar</button>
+            <?php else: ?>
+              <h5 class="alert alert-primary border text-center">Você está participando</h5>
+              <button class="cancelar btn btn-secondary" onclick="cancelar(<?= $evento->cd_evento ?>)" type="button" name="cancelar participação">Cancelar participação</button>
+            <?php endif; ?>
           <?php else: ?>
             <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
           <?php endif; ?>
@@ -58,6 +62,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    
+    <script src="../js/participar.js" charset="utf-8"></script>
+
   </body>
 </html>

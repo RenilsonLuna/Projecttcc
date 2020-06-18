@@ -58,8 +58,32 @@ class Evento
       'cd_endereco_evento' => $endereco,
       'cd_img_evento' => $img,
       'cd_requisitos' => $requisitos
-
     ]);
   }
+
+  public function participarEvento($usuario, $evento)
+  {
+    $this->conexao->insert('tb_usuarios_eventos', [
+      'cd_usuario' => $usuario,
+      'cd_evento' => $evento
+    ]);
+  }
+
+  public function isParticipante($usuario, $evento)
+  {
+    $participantes = $this->conexao->select('SELECT * FROM tb_usuarios_eventos WHERE cd_usuario = :usuario AND cd_evento = :evento', [
+      'usuario' => $usuario,
+      'evento' => $evento
+    ]);
+    return $participantes;
+  }
+
+  public function cancelarPart($usuario, $evento)
+  {
+    $this->conexao->delete('tb_usuarios_eventos', sprintf('cd_usuario = %s', $usuario), sprintf('cd_evento = %s', $evento));
+  }
+
+
+
 
 }

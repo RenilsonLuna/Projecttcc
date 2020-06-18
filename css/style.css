@@ -53,15 +53,6 @@ header img {
     color: black !important;
 }
 
-.btn-secondary {
-    background-color: white !important;
-    color: black !important;
-    border: solid black 1px !important;
-    border-radius: 10px !important;
-    font-size: small !important;
-    max-height: 30px !important;
-}
-
 .search {
     max-width: 500px;
 }
@@ -188,7 +179,6 @@ header .login {
 }
 
 .card .btn {
-
   background-color: #ff7600 !important;
   color: white !important;
   border: solid white 1px !important;
@@ -196,8 +186,6 @@ header .login {
   margin-left: 10px;
   margin-bottom: 10px;
   width: 100px;
-
-
 }
 
 @media only screen and (max-width: 550px){

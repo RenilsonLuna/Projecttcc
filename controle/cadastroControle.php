@@ -43,20 +43,20 @@ foreach ($_POST as $key) {
   }
 }
 
-// limpando pontos e traços do cpf/cnpj
 $cpf = limpaDoc($cpf);
 
 // verificando tipo de usuario
 switch($tipoUsuario){
-    case 'Usuario':
-        $tipo = 'usr';
-        break;
-    case 'Instituicao':
-        $tipo = 'emp';
+  case 'Usuario':
+  $tipo = 'usr';
+  $validCpf = $validate::cpf()->validate($cpf);
+  break;
+  case 'Instituicao':
+    $tipo = 'emp';
+    $validCpf = $validate::digit()->cnpj()->validate($cpf);
+    break;
 }
 
-// verificando cpf/cnpj Valido
-$validCpf = $validate::cpf()->validate($cpf);
 if (!$validCpf) {
   header('location: ../paginas/cadastro.php?erro=4');
   return false;
@@ -84,12 +84,12 @@ if (in_array($extensao, $formatosPermitidos)) {
   $caminho = '../imgs/img_perfis/';
 
   if(move_uploaded_file($temporario, $caminho.$img)) {
-    echo "deu bom" . "<br>";
+    echo "Arquivo movido";
   }else {
-    echo "deu ruim";
+    echo "Arquivo não movido";
   }
 }else{
-  header('location: ../paginas/cadastro.php?erro=6')
+  header('location: ../paginas/cadastro.php?erro=6');
 }
 
 // puxando usuarios existentes

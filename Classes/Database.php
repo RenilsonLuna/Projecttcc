@@ -8,7 +8,7 @@ class Database extends \PDO{
     public function __construct($sgdb, $host, $dbname, $user, $password)
     {
         try {
-            
+
             $dns = sprintf("%s:host=%s;dbname=%s", $sgdb, $host, $dbname);
             parent::__construct($dns, $user, $password);
 
@@ -43,22 +43,19 @@ class Database extends \PDO{
             $stmt->bindValue(":$key", $value);
         }
         $stmt->execute();
-
-        return $this->lastInsertId();
     }
 
-    public function delete($table, $where, $condition)
-    {   
-        $sql = sprintf("DELETE FROM %s WHERE %s = %s", $table, $where, $condition);
-        $stmt = $this->prepare($sql);   
-        $stmt->execute();
+    public function delete($table, $where, $and = 1)
+    {
+        $sql = sprintf('DELETE FROM %s WHERE %s AND %s', $table, $where, $and);
+        $this->exec($sql);
     }
 
     public function update($tabela, $dados = [], $where)
     {
         $newData = null;
         foreach ($dados as $key => $value) {
-            $newData .= "`$key` = :$key,"; 
+            $newData .= "`$key` = :$key,";
         }
 
         // rtrim retira virgula da ultima posição
