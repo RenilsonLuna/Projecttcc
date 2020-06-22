@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Muli', sans-serif;
+    outline: none!important;
+    border: none;
+}
+
+.rowc{
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
+.perfil{
+    max-width: 1024px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.txtp{
+    color: #05286F;
+    font-size: large;
+    margin-left: 65.6px;
+}
+
+/* .imgp{
+    height: 200px;
+    width: 200px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-radius: 10px!important;
+    overflow: hidden;
+    padding: 5px;
+
+} */
+
+.spanDestaque{
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.imgp img{
+  height: 200px;
+  width: 200px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+  border-radius: 10px!important;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.eventos{
+    width: 450px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-bottom-left-radius: 10px!important;
+    border-bottom-right-radius: 10px!important;
+    padding: 20px;
+}
+
+.ev1{
+    background-color: #ff7600;
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+    padding: 2px;
+    height: 36px;
+    width: 450px;
+    text-align: center;
+}
+
+
+.ev2{
+    background-color: #05286F;
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+    padding: 2px;
+    height: 36px;
+    width: 450px;
+    text-align: center;
+}
+
+
+.evp{
+    height: 130px;
+    width: 130px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.figevp{
+    height: 80%;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.figevp img{
+  height: 130px;
+  max-width: 130px;
+  object-fit: cover;
+}
+
+.txtevp{
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.center{
+  max-width: 1024px;
+  margin: auto;
+}

@@ -23,7 +23,8 @@ $post = $_POST;
 if (isset($post['btn-enviar'])) {
 
   if (empty($post['mensagem']) || empty($post['assunto'])) {
-  header('location: ../paginas/contato.php?erro=3');
+    header('location: ../paginas/contato.php?erro=3');
+    return false;
   }
   try {
     $fb->enviarFeedback($post['assunto'], $post['mensagem'], $_SESSION['usuario']);

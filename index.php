@@ -10,6 +10,7 @@ require "controle/homeControle.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <title>Weact</title>
 </head>
@@ -17,7 +18,7 @@ require "controle/homeControle.php";
 <body style="background-color: #e7e7e7;">
 
 
-    <header class="container col-12 py-2" style="background-color: white;">
+    <!-- <header class="container col-12 py-2" style="background-color: white;">
 
       <?php if(!$auth) { ?>
 
@@ -47,8 +48,8 @@ require "controle/homeControle.php";
         }
         ?>
 
-        <figure class="row justify-content-center">
-            <img class="" src="imgs/img_pgn/logotipo.png">
+        <figure class="d-flex justify-content-center">
+            <img class="" width="150" src="imgs/img_pgn/logotipo.png">
         </figure>
     </header>
 
@@ -61,10 +62,12 @@ require "controle/homeControle.php";
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav container col-5">
                 <a class="nav-item nav-link anav ativo" href="index.php">Inicio</a>
-                <a class="nav-item nav-link anav" href="paginas/sobre_nos.html">Sobre nós</a>
+                <a class="nav-item nav-link anav" href="paginas/sobre_nos.php">Sobre nós</a>
                 <a class="nav-item nav-link anav" href="paginas/contato.php">Contate-nos</a>
 
                 <?php if($auth){ ?>
+
+                  <a class="nav-item nav-link anav" href="paginas/criarEvento.php">Criar Evento</a>
                   <a class="nav-item nav-link anav" href="#">
                     Perfil
                   </a>
@@ -75,24 +78,52 @@ require "controle/homeControle.php";
             <?php } ?>
         </div>
     </nav>
+    </div> -->
+
+    <?php include "paginas/header.php" ?>
 
 
-      </div>
+        <main class="container-fluid" id="main">
 
-        <main class="container-fluid d-md-flex justify-content-center" id="main">
-            <?php foreach ($e as $key => $v): ?>
-
-              <div class="card" style="width: 20rem;">
-                <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h4 class="card-title"><?= $v->nm_evento ?></h4>
-                  <p class="card-text"><?= $v->ds_evento ?></p>
+          <div class="content">
+            <div class="toptop d-md-flex justify-content-center">
+              <div class="mr-5 mb-3">
+                <div class="input-group">
+                  <input type="text" class="input-search col-8" placeholder="Buscar evento...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default input-btn" type="button">
+                      <i class="fas fa-search mb-1"></i>
+                    </button>
+                  </span>
                 </div>
-                <button class="btn" onclick="redirect(<?=
-                $v->cd_evento?>)">Ver mais</button>
               </div>
+              <?php if ($auth): ?>
 
-            <?php endforeach; ?>
+                <div class="">
+                  <a class="btn-mais p-2" href="paginas/criarEvento.php">Criar evento <i class="fas fa-plus"></i> </a>
+                </div>
+
+              <?php endif; ?>
+            </div>
+
+            <div class="eventos d-md-flex justify-content-center">
+
+              <?php foreach ($e as $key => $v): ?>
+
+                <div class="card" style="width: 20rem;">
+                  <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
+                  <div class="card-body">
+                    <h4 class="card-title"><?= $v->nm_evento ?></h4>
+                    <p class="card-text"><?= $v->ds_evento ?></p>
+                  </div>
+                  <button class="btn" onclick="redirect(<?=
+                  $v->cd_evento?>)">Ver mais</button>
+                </div>
+
+              <?php endforeach; ?>
+
+            </div>
+          </div>
         </main>
 
 
@@ -102,17 +133,7 @@ require "controle/homeControle.php";
 
     </div>
 
-    <footer class="page-footer footer-page">
-        <div class="justify-content-center container-fluid d-flex">
-            <a class="icon m-3" href=""></a>
-            <a class="icon m-3" href=""></a>
-            <a class="icon m-3" href=""></a>
-            <a class="icon m-3" href=""></a>
-        </div>
-        <div class="justify-content-center container-fluid d-flex">
-            <p class="copyright pt-3">© Copyright 2020 Weact - All Rights Reserved</p>
-        </div>
-    </footer>
+    <?php include "paginas/footer.php" ?>
 
     <script type="text/javascript">
         const alerta = document.getElementById('alerta');
@@ -134,7 +155,7 @@ require "controle/homeControle.php";
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-
+    <script src="js/all.js" charset="utf-8"></script>
     <script src="js/carregarMais.js" charset="utf-8"></script>
 </body>
 </html>

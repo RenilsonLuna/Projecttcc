@@ -11,9 +11,48 @@ header {
     height: 120px;
 }
 
-header img {
-    width: 149px;
-    height: 120px;
+.log{
+  
+}
+
+.search {
+    max-width: 500px;
+}
+
+.btn-mais{
+    background-color: #ff7600;
+    color: white;
+    height: 30px!important;
+    border-radius: 10px;
+    text-decoration: none!important;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.icon-mais{
+    background-color: #ff7600;
+    color: white;
+}
+
+.input-search{
+    width: 350px;
+    color: #656464;
+
+    border-radius: 10px;
+    border-style: solid;
+    padding-left: 5px;
+
+    background-color: white;
+}
+
+footer a{
+  font-size: 2rem;
+}
+
+.icon-mais{
+    background-color: #ff7600;
+    color: white;
 }
 
 .center{
@@ -106,13 +145,6 @@ footer {
 
 .ativo{
 
-}
-
-.icon{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: white;
 }
 
 .copyright{

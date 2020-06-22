@@ -16,6 +16,15 @@ $conn = new Database('mysql', 'localhost', 'weacttcc', 'root', '');
 $usuario = new Usuario($conn);
 $evento = new evento($conn);
 
+if (isset($_SESSION['usuario'])) {
+
+  $tipoUsuario = $conn->select('SELECT cd_tipo_usuario FROM tb_usuarios WHERE cd_usuario = :cd_usuario', [
+    'cd_usuario' => $_SESSION['usuario']
+  ], \PDO::FETCH_ASSOC);
+  $tipo = $tipoUsuario[0];
+}
+
+
 // action for submit botton
 if (isset($_POST['btn-enviar']))
 {
@@ -58,12 +67,8 @@ if (isset($_POST['btn-enviar']))
     if(!move_uploaded_file($temporario, $caminho.$newName)) {
       header('location: ../paginas/criarEvento.php?erro=5');
     }
-
   }
-  echo "<pre>";
-  print_r($_POST);
-  print_r($_SESSION);
   // criando evento
-  var_dump($evento->criarEvento($nome, $criador, $dt, $ds, $hr, $local, $newName, $requisitos));
+$evento->criarEvento($nome, $criador, $dt, $ds, $hr, $local, $newName, $requisitos);
 
 }

@@ -83,7 +83,12 @@ class Evento
     $this->conexao->delete('tb_usuarios_eventos', sprintf('cd_usuario = %s', $usuario), sprintf('cd_evento = %s', $evento));
   }
 
-
-
+  public function seusEventos($usuario)
+  {
+    $eventos = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_criador_evento = :criador", [
+      'criador' => $usuario
+    ], \PDO::FETCH_ASSOC);;
+    return $eventos;
+  }
 
 }

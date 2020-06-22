@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contato.css">
+    <link rel="stylesheet" href="../css/all.css" type="text/css">
   </head>
   <body>
 
@@ -42,9 +43,20 @@
                       <h4 class="text-center">Erro no envio!</h4>
                       </div>';
               break;
-
             }
-          } ?>
+          }
+          if (isset($_GET['erro'])) {
+
+            switch($_GET['erro']){
+              case 3:
+              echo '<div class="alert alert-danger p-2 shadow" id="alerta">
+              <h4 class="text-center">Digite alguma mensagem!</h4>
+              </div>';
+              break;
+            }
+            
+          }
+          ?>
 
 
           <!-- mensagem -->

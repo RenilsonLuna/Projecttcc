@@ -4,8 +4,14 @@ namespace Classes;
 
 class Usuario
 {
-	private $id;
-	private $name;
+	private $cd_usuarionm_usuario;
+	private $cd_email_usuario;
+	private $cd_senha_usuario;
+	private $cd_tipo_usuario;
+	private $cd_cpf_cnpj;
+	private $cd_img_perfil;
+	private $cd_cep_usuario;
+
 	private $conexao;
 
 
@@ -30,7 +36,7 @@ class Usuario
 	# -------------- cadastro e login --------------- #
 	public function logar($email, $senha)
 	{
-	    $select = $this->conexao->select("SELECT * FROM tb_usuarios WHERE cd_email_usuario = :e AND cd_senha_usuario = :s", [
+	    $select = $this->conexao->select("SELECT * FROM tb_usuarios WHERE private $cd_email_usuario = :e AND cd_senha_usuario = :s", [
 	        'e' => $email,
 	        's' => $senha
 	    ], \PDO::FETCH_ASSOC);
@@ -51,7 +57,6 @@ class Usuario
 			'cd_cpf_cnpj' => $cpfCnpj,
 			'cd_img_perfil' => $img,
 			'cd_cep_usuario' => $cep
-
 		]);
 	}
 }
