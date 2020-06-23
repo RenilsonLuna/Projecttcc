@@ -126,11 +126,6 @@ require "controle/homeControle.php";
           </div>
         </main>
 
-
-        <div class="d-flex container-fluid justify-content-center mt-5">
-            <div class="btn btn-plus" id="btn-carregar" onclick="load()">Carregar mais</div>
-        </div>
-
     </div>
 
     <?php include "paginas/footer.php" ?>

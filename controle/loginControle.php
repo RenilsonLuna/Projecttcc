@@ -40,6 +40,7 @@ if(empty($email) || empty($senha)){
     header(sprintf('location: %s%serro=2', $pgnAnterior, $separador));
     return false;
 }
+
 $log = $usuario->logar($email, $senha);
 
 // verificando log

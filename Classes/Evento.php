@@ -36,9 +36,10 @@ class Evento
 
   public function recuperarEvento()
   {
-    return $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :id", [
+    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :id", [
       'id' => $this->cd_evento
     ]);
+    return $evento;
   }
 
   public function todosEventos()
@@ -91,4 +92,11 @@ class Evento
     return $eventos;
   }
 
+  public function eventosParticipando($usuario)
+  {
+    $eventos = $this->conexao->select("SELECT * FROM tb_usuarios_eventos WHERE cd_usuario = :cd", [
+      'cd' => $usuario
+    ], \PDO::FETCH_ASSOC);
+    return $eventos;
+  }
 }

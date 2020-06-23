@@ -36,7 +36,7 @@ class Usuario
 	# -------------- cadastro e login --------------- #
 	public function logar($email, $senha)
 	{
-	    $select = $this->conexao->select("SELECT * FROM tb_usuarios WHERE private $cd_email_usuario = :e AND cd_senha_usuario = :s", [
+	    $select = $this->conexao->select("SELECT * FROM tb_usuarios WHERE cd_email_usuario = :e AND cd_senha_usuario = :s", [
 	        'e' => $email,
 	        's' => $senha
 	    ], \PDO::FETCH_ASSOC);

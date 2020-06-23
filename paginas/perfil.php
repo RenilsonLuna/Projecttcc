@@ -35,7 +35,7 @@
                 </figure>
                 <div class="dados">
 
-                <p><span class="spanDestaque">Nome:</span> <?= $usuario->nm_usuario ?></p>
+                <p><span class="spanDestaque">Nome:</span> <?= ucfirst($usuario->nm_usuario) ?></p>
                 <p><span class="spanDestaque">CPF/CNPJ:</span> <?= $usuario->cd_cpf_cnpj ?></p>
                 <p><span class="spanDestaque">CEP:</span> <?= $usuario->cd_cep_usuario ?></p>
 
@@ -59,7 +59,7 @@
                     <div class="evp">
                         <figure class="figevp">
                             <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
-                            <p class="txtvp"><?= $evento['nm_evento'] ?></p>
+                            <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
                         </figure>
                     </div>
 
@@ -68,15 +68,20 @@
             </div>
 
                 <div class="eventos row rowc">
+
+                  <?php foreach ($eventoArray as $key => $val): ?>
                     <div class="evp">
                         <figure class="figevp">
-                            <img src="" alt="">
+                          <img src="../imgs/img_eventos/<?= $eventoArray[$key][0]->cd_img_evento ?>" alt="imagem do evento">
+                          <figcaption class="txtvp"><?= substr($eventoArray[$key][0]->nm_evento, 0, 20) . "..."; ?></figcaption>
                         </figure>
 
                         <div class="txtevp">
-                            Nome do evento
+
                         </div>
                     </div>
+                  <?php endforeach; ?>
+
                 </div>
             </div>
         </div>
@@ -85,7 +90,6 @@
 </div>
 
 <?php include "footer.php"; ?>
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
