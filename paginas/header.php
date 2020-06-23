@@ -12,7 +12,7 @@
         <input class="input-login m-2" placeholder="Usuário" type="email" id="" name="email">
         <br>
         <input class="input-login m-2" placeholder="Senha" type="password" id="" name="senha">
-        <a href="../paginas/cadastro.php" class="aform ml-2">Cadastre-se já</a>
+        <a href="../../tcc/paginas/cadastro.php" class="aform ml-2">Cadastre-se já</a>
         <input class="btnlogin ml-3" type="submit" value="Entrar">
       </form>
     </div>

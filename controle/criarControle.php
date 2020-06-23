@@ -70,5 +70,5 @@ if (isset($_POST['btn-enviar']))
   }
   // criando evento
 $evento->criarEvento($nome, $criador, $dt, $ds, $hr, $local, $newName, $requisitos);
-
+header('location: ../index.php');
 }

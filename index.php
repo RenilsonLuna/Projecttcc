@@ -85,32 +85,33 @@ require "controle/homeControle.php";
 
         <main class="container-fluid" id="main">
 
-          <div class="content">
-            <div class="toptop d-md-flex justify-content-center">
-              <div class="mr-5 mb-3">
-                <div class="input-group">
-                  <input type="text" class="input-search col-8" placeholder="Buscar evento...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default input-btn" type="button">
-                      <i class="fas fa-search mb-1"></i>
-                    </button>
-                  </span>
-                </div>
+          <div class="toptop d-md-flex justify-content-center">
+            <div class="mr-5 mb-3">
+              <div class="input-group">
+                <input type="text" class="input-search col-8" placeholder="Buscar evento...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default input-btn" type="button">
+                    <i class="fas fa-search mb-1"></i>
+                  </button>
+                </span>
               </div>
-              <?php if ($auth): ?>
-
-                <div class="">
-                  <a class="btn-mais p-2" href="paginas/criarEvento.php">Criar evento <i class="fas fa-plus"></i> </a>
-                </div>
-
-              <?php endif; ?>
             </div>
+            <?php if ($auth): ?>
 
-            <div class="eventos d-md-flex justify-content-center">
+              <div class="">
+                <a class="btn-mais p-2" href="paginas/criarEvento.php">Criar evento <i class="fas fa-plus"></i> </a>
+              </div>
+
+            <?php endif; ?>
+          </div>
+
+          <div class="content d-flex justify-content-center ">
+
+            <div class="eventos row justify-content-center col-8">
 
               <?php foreach ($e as $key => $v): ?>
 
-                <div class="card" style="width: 20rem;">
+                <div class="card float-left" style="width: 20rem;">
                   <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
                   <div class="card-body">
                     <h4 class="card-title"><?= $v->nm_evento ?></h4>

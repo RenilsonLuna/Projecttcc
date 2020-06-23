@@ -29,17 +29,29 @@
             </a>
         </div>
 
-            <div class="row rowc">
+            <div class="row rowc col-12">
                 <figure class="imgp mr-3">
                     <img src="../imgs/img_perfis/<?= $usuario->cd_img_perfil ?>" alt="Imagem de perfil">
                 </figure>
-                <div class="dados">
+                <div class="dados col-8">
 
-                <p><span class="spanDestaque">Nome:</span> <?= ucfirst($usuario->nm_usuario) ?></p>
-                <p><span class="spanDestaque">CPF/CNPJ:</span> <?= $usuario->cd_cpf_cnpj ?></p>
-                <p><span class="spanDestaque">CEP:</span> <?= $usuario->cd_cep_usuario ?></p>
+              <table class="table">
+                <tr>
+                  <td><span class="spanDestaque">Nome: </span> <?= ucfirst($usuario->nm_usuario) ?></td>
+                  <td><span class="spanDestaque">Email: </span> <?= $usuario->cd_email_usuario ?> </td>
+                  <td><span class="spanDestaque">CPF/CNPJ: </span> <?= $usuario->cd_cpf_cnpj ?> </td>
+                </tr>
+                <tr>
+                  <td> <span class="spanDestaque">CEP: </span> <span id="cep"> <?= $usuario->cd_cep_usuario ?> </span> </td>
+                  <td id="cidade"></td>
+                  <td id="estado"></td>
+                </tr>
+                <tr>
+                  <td id="bairro"></td>
+                  <td id="logadouro"></td>
+                </tr>
+              </table>
 
-              </div>
             </div>
 
             <div class="row rowc d-flex justify-content-between">
@@ -51,9 +63,11 @@
                 </div>
             </div>
 
+
             <div class="row rowc d-flex justify-content-between">
               <div class="eventos row rowc">
 
+          <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
               <?php foreach ($seuEvento as $evento): ?>
 
                     <div class="evp">
@@ -64,7 +78,9 @@
                     </div>
 
               <?php endforeach; ?>
-
+            <?php else: ?>
+              <h5 class="text-primary text-center p-3">É necessário ser uma instituição para ter eventos...</h5>
+            <?php endif; ?>
             </div>
 
                 <div class="eventos row rowc">
@@ -90,6 +106,33 @@
 </div>
 
 <?php include "footer.php"; ?>
+
+<script type="text/javascript">
+
+window.onload = function (){
+
+  const end = document.getElementById('cep')
+  const cep = end.innerText
+  const url = `https://viacep.com.br/ws/${cep}/json/unicode/`;
+  const ajax = new XMLHttpRequest();
+  ajax.open('GET', url);
+  ajax.onreadystatechange = () => {
+
+    if (ajax.readyState == 4 && ajax.status == 200) {
+      const dadosText = ajax.responseText;
+      console.log(dadosText)
+      const dadosJson = JSON.parse(dadosText);
+
+      console.log(dadosJson);
+      document.getElementById('cidade').innerText = dadosJson.localidade;
+      document.getElementById('estado').innerText = dadosJson.uf;
+      document.getElementById('bairro').innerText = dadosJson.bairro;
+      document.getElementById('logadouro').innerText = dadosJson.logradouro;
+    }
+  }
+  ajax.send();
+}
+</script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>

@@ -43,7 +43,20 @@ foreach ($_POST as $key) {
   }
 }
 
+// puxando usuarios existentes
+$userExists = $conn->select("SELECT * FROM tb_usuarios WHERE cd_email_usuario = :email", [
+  'email' => $email
+]);
+
+
+// verificando usuarios existentes
+if(count($userExists) >= 1){
+  header('location: ../paginas/cadastro.php?erro=2');
+  return false;
+}
+
 $cpf = limpaDoc($cpf);
+
 
 // verificando tipo de usuario
 switch($tipoUsuario){
@@ -92,17 +105,6 @@ if (in_array($extensao, $formatosPermitidos)) {
   header('location: ../paginas/cadastro.php?erro=6');
 }
 
-// puxando usuarios existentes
-$userExists = $conn->select("SELECT * FROM tb_usuarios WHERE cd_email_usuario = :email", [
-   'email' => $email
-]);
-
-
-// verificando usuarios existentes
-if(count($userExists) >= 1){
-   header('location: ../paginas/cadastro.php?erro=2');
-   return false;
-}
 
 // cadastrando
 $usuario->cadastrar($nome, $email, $senha, $cpf, $img, $tipo, $cep);
