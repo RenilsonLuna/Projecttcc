@@ -59,4 +59,14 @@ class Usuario
 			'cd_cep_usuario' => $cep
 		]);
 	}
+
+	public function recUsuario($usuario)
+	{
+		$user = $this->conexao->select('SELECT * FROM tb_usuarios WHERE cd_usuario = :cd', [
+			'cd' => $usuario
+		], \PDO::FETCH_ASSOC);
+
+		unset($user[0]['cd_senha_usuario']);
+		return $user[0];
+	}
 }

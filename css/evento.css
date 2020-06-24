@@ -19,19 +19,30 @@
   height: 100%;
 }
 
-.img-evento{
-
+.positionImg{
   width: 900px;
-  height: 500px;
-
-  position: relative;
   left: 50%;
-  padding: 0;
+  position: relative;
   margin-left: -450px;
+}
+.img-evento{
+  height: 500px;
   margin-top: -22%;
+  padding: 0;
   z-index: 2;
-
   border-radius: 10px;
+}
+
+.nome-criador{
+  padding-left: 5px;
+}
+
+.img-criador{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+  object-fit: fill;
 }
 
 .content{

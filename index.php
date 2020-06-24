@@ -111,11 +111,17 @@ require "controle/homeControle.php";
 
               <?php foreach ($e as $key => $v): ?>
 
-                <div class="card float-left" style="width: 20rem;">
+                <div class="card float-left shadow" style="width: 20rem;">
+                  <div class="m-1 d-flex">
+                      <img src="imgs/img_perfis/<?= $usuario->recUsuario($v->cd_criador_evento)['cd_img_perfil'] ?>" alt="img do criador" class="img-criador m-1 border">
+                      <p class=""> <?= ucfirst($usuario->recUsuario($v->cd_criador_evento)['nm_usuario']) ?> </p>
+                  </div>
                   <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
                   <div class="card-body">
-                    <h4 class="card-title"><?= $v->nm_evento ?></h4>
-                    <p class="card-text"><?= $v->ds_evento ?></p>
+                    <h4 class="card-title"><?= substr($v->nm_evento, 0, 20)."..." ?></h4>
+
+                    <p class="card-text"><?= substr($v->ds_evento, 0, 80)."..." ?></p>
+                    <p class="card-text text-success"> <?= $evento->numParticipantes($v->cd_evento) ?> Participantes</p>
                   </div>
                   <button class="btn" onclick="redirect(<?=
                   $v->cd_evento?>)">Ver mais</button>

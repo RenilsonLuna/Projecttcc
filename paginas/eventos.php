@@ -13,16 +13,36 @@
   </head>
   <body>
     <?php include "header.php" ?>
-    <div  class="jumbotron">
-      <img class="img-jumbotron" src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" alt="imagem do evento">
-    </div>
 
-    <main class="container-fluid mb-3">
-      <img src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" class="img-evento col-12 col-sm-12" alt="imagem do evento">
+      <?php if (isset($_GET['id'])): ?>
 
-      <div class="content border rounded px-5 py-3 shadow-sm col-12 col-sm-12">
+        <div  class="jumbotron">
+          <img class="img-jumbotron" src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" alt="imagem do evento">
+        </div>
+
+        <main class="container-fluid mb-3">
+
+        <figure class="col-12 col-sm-12">
+          <img src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" class="img-evento positionImg" alt="imagem do evento">
+        </figure>
+
+        <div class="content border rounded px-5 py-3 shadow-sm col-12 col-sm-12">
+
+          <div class="criador col-12">
+            <small class="text-center d-flex justify-content-center mb-2">Criado por:</small>
+            <div class="nome-criador py-1 text-center">
+              <img src="../imgs/img_perfis/<?= $dadosUser['cd_img_perfil'] ?>" alt="imagem do criador" class="img-criador">
+              <?= ucfirst($dadosUser['nm_usuario'])?>
+              <hr class="text-center bg-success">
+            </div>
+          </div>
+
           <h1><?= $evento->nm_evento ?></h1>
           <div class="data-local">
+            <small>
+              <svg class="icone mb-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path stroke="red" stroke-width="5" fill="orange" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
+              <?= $n ?> Participantes
+            </small><br>
             <small><img src="../icones/localizacao.png" class="icone mb-2"> <?= $evento->cd_endereco_evento ?></small><br>
             <small> <img src="../icones/hora.png" class="icone mr-2"><?= $evento->dt_evento ?> às <?= $evento->hr_evento ?>h</small>
           </div>
@@ -48,7 +68,10 @@
             <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
           <?php endif; ?>
 
-      </div>
+        </div>
+
+      <?php else: header('location: ../index.php')?>
+      <?php endif; ?>
     </main>
 
     <?php include "footer.php" ?>

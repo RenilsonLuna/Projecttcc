@@ -12,9 +12,16 @@ header {
 }
 
 .log{
-  
+
 }
 
+.img-criador{
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+
+  object-fit: fill;
+}
 .search {
     max-width: 500px;
 }

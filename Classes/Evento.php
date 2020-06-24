@@ -42,6 +42,15 @@ class Evento
     return $evento;
   }
 
+  public function recuperarEventobyId($evento)
+  {
+    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :cd", [
+      'cd' => $evento
+    ], \PDO::FETCH_ASSOC);
+
+    return $evento;
+  }
+
   public function todosEventos()
   {
     return $this->conexao->select('SELECT * FROM tb_eventos');
@@ -98,5 +107,15 @@ class Evento
       'cd' => $usuario
     ], \PDO::FETCH_ASSOC);
     return $eventos;
+  }
+
+  public function numParticipantes($evento)
+  {
+    $participantes = $this->conexao->select("SELECT * FROM tb_usuarios_eventos WHERE cd_evento = :cd", [
+      "cd" => $evento
+    ], \PDO::FETCH_ASSOC);
+
+    $num = count($participantes);
+    return $num;
   }
 }

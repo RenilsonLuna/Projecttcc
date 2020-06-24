@@ -44,15 +44,25 @@ if (isset($_GET['id'])) {
 
   $cd_evento = $_GET['id'];
   $evento->__set('cd_evento', $cd_evento);
-
+  
   $e = $evento->recuperarEvento();
 
+  // se estiver logado verifica participância
   if (isset($_SESSION['usuario'])) {
     $cd_usuario = $_SESSION['usuario'];
     $participante = $evento->isParticipante($cd_usuario, $cd_evento);
   }
+
+  // dando valores aos atributos da classe Evento
   $cd_evento = $_GET['id'];
   foreach ($e[0] as $key => $valor) {
     $evento->__set($key, $valor);
   }
+
+  // criador do evento
+  $criador = $evento->cd_criador_evento;
+  $dadosUser = $usuario->recUsuario($criador);
+
+  // num de participantes
+  $n = $evento->numParticipantes($evento->cd_evento);
 }
