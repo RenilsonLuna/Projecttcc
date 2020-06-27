@@ -21,4 +21,13 @@ $conn = new Database('mysql', 'localhost', 'weacttcc', 'root', '');
 $usuario = new Usuario($conn);
 $evento = new Evento($conn);
 
+$counter = 0;
 $e = $evento->todosEventos();
+
+// buscando evento
+if (isset($_GET['q'])) {
+  $nome = $_GET['q'];
+  $e = $conn->select("SELECT * FROM tb_eventos WHERE nm_evento LIKE '%$nome%'", [
+    'nm' => $nome
+  ]);
+}

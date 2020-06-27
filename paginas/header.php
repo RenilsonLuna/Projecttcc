@@ -2,6 +2,17 @@
 
 <header class="log container col-12 py-2" style="background-color: white;">
 
+    <!-- BUSCAR USUARIO -->
+    
+  <!-- <form class="" action="../../tcc/index.php?" method="GET">
+    <input type="text" class="input-search col-10 py-1" name="q" placeholder="Buscar usuário ou instituição" id="nome">
+    <span class="input-group-btn">
+      <button class="btn btn-default input-btn" type="submit">
+        <i class="fas fa-search mb-1"></i>
+      </button>
+    </span>
+  </form> -->
+
   <figure class="row justify-content-center">
     <img class="" width="150" src="../../tcc/imgs/img_pgn/logotipo.png">
   </figure>

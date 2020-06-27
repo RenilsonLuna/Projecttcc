@@ -29,22 +29,66 @@
         <div class="content border rounded px-5 py-3 shadow-sm col-12 col-sm-12">
 
           <div class="criador col-12">
+            <?php if (isset($_SESSION['usuario'])): ?>
+
+              <!-- EDITAR EVENTO  -->
+              <!-- <?php if ($userCreator): ?>
+                <div class="editar d-flex">
+                  <button id="btnEditar" class="border-bottom">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/>
+                    <path stroke="black" stroke-width="1" fill="green" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                  </svg>
+                  Editar
+                  </button>
+                </div>
+              <?php endif; ?> -->
+
+            <?php endif; ?>
             <small class="text-center d-flex justify-content-center mb-2">Criado por:</small>
             <div class="nome-criador py-1 text-center">
-              <img src="../imgs/img_perfis/<?= $dadosUser['cd_img_perfil'] ?>" alt="imagem do criador" class="img-criador">
-              <?= ucfirst($dadosUser['nm_usuario'])?>
+              <a href="perfil.php?usuario=<?= $dadosUser['cd_usuario'] ?>" class="btn">
+                <img src="../imgs/img_perfis/<?= $dadosUser['cd_img_perfil'] ?>" alt="imagem do criador" class="img-criador">
+                <?= ucfirst($dadosUser['nm_usuario'])?>
+              </a>
               <hr class="text-center bg-success">
             </div>
+
           </div>
 
           <h1><?= $evento->nm_evento ?></h1>
           <div class="data-local">
-            <small>
-              <svg class="icone mb-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path stroke="red" stroke-width="5" fill="orange" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
-              <?= $n ?> Participantes
-            </small><br>
-            <small><img src="../icones/localizacao.png" class="icone mb-2"> <?= $evento->cd_endereco_evento ?></small><br>
-            <small> <img src="../icones/hora.png" class="icone mr-2"><?= $evento->dt_evento ?> às <?= $evento->hr_evento ?>h</small>
+
+            <div class="">
+              <div class="part d-flex">
+
+              <small id="participantes" onclick="mostrarParticipantes()">
+                <svg class="icone mb-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path stroke="red" stroke-width="5" fill="orange" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
+                <?= $n ?> Participantes
+              </small><br>
+
+              <div class="col-8 my-2 hideParts" id="partList">
+                <ul class="list-group">
+                  <?php for ($i=0; $i < 6; $i++) { ?>
+
+                    <?php if ($i < 5){ ?>
+                      <li class="list-group-item col-5">
+                        <a href="perfil.php?usuario=<?= $participantes[$i][0]->cd_usuario ?>" class="text-dark nav-link">
+                          <img src="../imgs/img_perfis/<?= $participantes[$i][0]->cd_img_perfil ?>" class="rounded mr-2" width="30" alt="img perfil participante">
+                          <?= $participantes[$i][0]->nm_usuario; ?>
+                        </a>
+                      </li>
+                    <?php }else{ ?>
+                      <li class="list-group-item col-5">Mais <?= count($participantes)-5 ?> participante(s)...</li>
+                    <? } ?>
+
+                  <?php } ?>
+                </ul>
+              </div>
+            </div>
+              <small><img src="../icones/localizacao.png" class="icone mb-2"> <?= $evento->cd_endereco_evento ?></small><br>
+              <small> <img src="../icones/hora.png" class="icone mr-2"><?= $evento->dt_evento ?> às <?= $evento->hr_evento ?>h</small>
+          </div>
+
           </div>
 
           <div class="descricao mt-4">
@@ -76,6 +120,12 @@
 
     <?php include "footer.php" ?>
 
+    <script type="text/javascript">
+    let estado = 'ativo'
+    function mostrarParticipantes(){
+      console.log(partList.classList.toggle("hideParts"));
+    }
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>

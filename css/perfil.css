@@ -65,6 +65,15 @@
   border-radius: 10px;
 }
 
+#form{
+  display: none;
+}
+
+.formulario{
+  padding: 10px;
+  box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
 .eventos{
     width: 450px;
     background-color: white;
@@ -85,7 +94,6 @@
     width: 450px;
     text-align: center;
 }
-
 
 .ev2{
     background-color: #05286F;

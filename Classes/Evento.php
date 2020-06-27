@@ -42,12 +42,11 @@ class Evento
     return $evento;
   }
 
-  public function recuperarEventobyId($evento)
+  public function recuperarEventoByAttr($valor, $atributo)
   {
-    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :cd", [
-      'cd' => $evento
+    $evento = $this->conexao->select(sprintf("SELECT * FROM tb_eventos WHERE %s = :cd", $atributo), [
+      'cd' => $valor
     ], \PDO::FETCH_ASSOC);
-
     return $evento;
   }
 
@@ -118,4 +117,13 @@ class Evento
     $num = count($participantes);
     return $num;
   }
+
+  public function participantes($evento)
+  {
+    $participantes = $this->conexao->select("SELECT cd_usuario FROM tb_usuarios_eventos WHERE cd_evento = :cd", [
+      'cd' => $evento
+    ], \PDO::FETCH_ASSOC);
+    return $participantes;
+  }
+
 }

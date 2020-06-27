@@ -88,12 +88,16 @@ require "controle/homeControle.php";
           <div class="toptop d-md-flex justify-content-center">
             <div class="mr-5 mb-3">
               <div class="input-group">
-                <input type="text" class="input-search col-8" placeholder="Buscar evento...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default input-btn" type="button">
-                    <i class="fas fa-search mb-1"></i>
-                  </button>
-                </span>
+                <form class="" action="index.php" method="GET">
+
+                  <input type="text" class="input-search col-10 py-1" name="q" placeholder="Buscar evento..." id="nome">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default input-btn" type="submit">
+                      <i class="fas fa-search mb-1"></i>
+                    </button>
+                  </span>
+
+                </form>
               </div>
             </div>
             <?php if ($auth): ?>
@@ -110,13 +114,15 @@ require "controle/homeControle.php";
             <div class="eventos row justify-content-center col-8">
 
               <?php foreach ($e as $key => $v): ?>
-
+                <?php if ($counter >= 6){ continue; } ?>
                 <div class="card float-left shadow" style="width: 20rem;">
-                  <div class="m-1 d-flex">
-                      <img src="imgs/img_perfis/<?= $usuario->recUsuario($v->cd_criador_evento)['cd_img_perfil'] ?>" alt="img do criador" class="img-criador m-1 border">
-                      <p class=""> <?= ucfirst($usuario->recUsuario($v->cd_criador_evento)['nm_usuario']) ?> </p>
-                  </div>
-                  <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
+                    <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
+
+                      <!-- NOME E FOTO DO CRIADOR (unecessary) -->
+                      <!-- <img src="imgs/img_perfis/<?= $usuario->recUsuario($v->cd_criador_evento)['cd_img_perfil'] ?>" alt="img do criador" class="img-criador m-1 border"> -->
+                      <!-- <p class=""> <?= ucfirst($usuario->recUsuario($v->cd_criador_evento)['nm_usuario']) ?> </p> -->
+
+
                   <div class="card-body">
                     <h4 class="card-title"><?= substr($v->nm_evento, 0, 20)."..." ?></h4>
 
@@ -126,8 +132,7 @@ require "controle/homeControle.php";
                   <button class="btn" onclick="redirect(<?=
                   $v->cd_evento?>)">Ver mais</button>
                 </div>
-
-              <?php endforeach; ?>
+              <?php $counter++; endforeach; ?>
 
             </div>
           </div>

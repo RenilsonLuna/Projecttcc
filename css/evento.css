@@ -73,6 +73,21 @@ main .content .icone{
   object-position: center;
 }
 
+main #participantes:hover{
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.hideParts{
+  display: none;
+}
+
+#partList{
+  position: absolute;
+  z-index: 4;
+  margin-left: 100px;
+}
+
 main .content .bttn{
   background-color: #ff7600;
   border-raius: 6px;
@@ -80,6 +95,7 @@ main .content .bttn{
   width: 150px;
   margin-left: calc(50% - 75px);
 }
+
 
 .cancelar {
   width: 300px;

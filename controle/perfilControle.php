@@ -8,7 +8,7 @@ $sessionConfig = (new \ByJG\Session\SessionConfig('localhost/tcc'))
   ->replaceSessionHandler();
 $handler = new \ByJG\Session\JwtSession($sessionConfig);
 
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['usuario']) && !isset($_GET['usuario'])) {
   header('location: ../index.php');
 }
 
@@ -26,9 +26,13 @@ $evento = new Evento($conn);
 include "authControle.php";
 
 // definindo atributos do usuário
-$cd_usuario = $_SESSION['usuario'];
-$usuario->__set('id', $cd_usuario);
-$dados = $conn->select(sprintf('SELECT * FROM tb_usuarios WHERE cd_usuario = %s', $cd_usuario), [], \PDO::FETCH_ASSOC);
+if (isset($_SESSION['usuario'])) {
+  $perfilUser = isset($_GET['usuario']) ? $_GET['usuario'] : $_SESSION['usuario'];
+}else {
+  $perfilUser = $_GET['usuario'];
+}
+
+$dados = $conn->select(sprintf('SELECT * FROM tb_usuarios WHERE cd_usuario = %s', $perfilUser), [], \PDO::FETCH_ASSOC);
 
 foreach ($dados[0] as $chave => $valor) {
   $usuario->__set($chave, $valor);
@@ -47,8 +51,8 @@ switch ($usuario->cd_tipo_usuario) {
 }
 
 // eventos criados pelo usuario
-$seuEvento = $evento->seusEventos($cd_usuario);
-$eventosPart = $evento->eventosParticipando($cd_usuario);
+$seuEvento = $evento->seusEventos($perfilUser);
+$eventosPart = $evento->eventosParticipando($perfilUser);
 $eventoArray = [];
 for ($i=0; $i < count($eventosPart); $i++) {
   $usuario_evento = $eventosPart[$i];

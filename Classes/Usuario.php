@@ -69,4 +69,15 @@ class Usuario
 		unset($user[0]['cd_senha_usuario']);
 		return $user[0];
 	}
+
+	public function recUsuarios(Array $usuarios)
+	{
+		$users = [];
+		for ($i=0; $i < count($usuarios); $i++) {
+			$users[$i] = $this->conexao->select("SELECT nm_usuario, cd_img_perfil, cd_usuario FROM tb_usuarios WHERE cd_usuario = :cd", [
+				'cd' => $usuarios[$i]['cd_usuario']
+			], \PDO::FETCH_OBJ);
+		}
+		return $users;
+	}
 }

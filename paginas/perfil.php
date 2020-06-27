@@ -24,9 +24,13 @@
         <div class="row rowc d-flex justify-content-between">
             <p class="txtp"><?= $tipo ?></p>
             <div></div>
-            <a class="btn-mais" href="">
-                Editar perfil
-            </a>
+            <?php if (isset($_SESSION['usuario'])): ?>
+              <?php if ($perfilUser == $_SESSION['usuario']): ?>
+                <button class="btn-mais" onclick="editar()">
+                  Editar perfil
+                </button>
+              <?php endif; ?>
+            <?php endif; ?>
         </div>
 
             <div class="row rowc col-12">
@@ -35,9 +39,9 @@
                 </figure>
                 <div class="dados col-8">
 
-              <table class="table">
+              <table class="table" id="campos">
                 <tr>
-                  <td><span class="spanDestaque">Nome: </span> <?= ucfirst($usuario->nm_usuario) ?></td>
+                  <td id="nome"><span class="spanDestaque">Nome: </span> <?= ucfirst($usuario->nm_usuario) ?></td>
                   <td><span class="spanDestaque">Email: </span> <?= $usuario->cd_email_usuario ?> </td>
                   <td><span class="spanDestaque">CPF/CNPJ: </span> <?= $usuario->cd_cpf_cnpj ?> </td>
                 </tr>
@@ -51,6 +55,16 @@
                   <td id="logadouro"></td>
                 </tr>
               </table>
+              <form class="shadow p-5" action="../controle/editarPerfil.php" method="post" id="form">
+                <label for="nome">
+                  Nome
+                  <input class="form-control" type="text" name="Nome" id="nome" placeholder="Atual: <?= $usuario->nm_usuario ?>">
+                </label>
+                <label for="cep">
+                  CEP
+                  <input class="form-control" type="text" name="cep" id="cep" placeholder="Atual: <?= $usuario->cd_cep_usuario ?>">
+                </label>
+              </form>
 
             </div>
 
@@ -72,8 +86,10 @@
 
                     <div class="evp">
                         <figure class="figevp">
-                            <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
-                            <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                            <a href="eventos.php?id=<?= $evento['cd_evento'] ?>">
+                              <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
+                              <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                            </a>
                         </figure>
                     </div>
 
@@ -88,8 +104,10 @@
                   <?php foreach ($eventoArray as $key => $val): ?>
                     <div class="evp">
                         <figure class="figevp">
-                          <img src="../imgs/img_eventos/<?= $eventoArray[$key][0]->cd_img_evento ?>" alt="imagem do evento">
-                          <figcaption class="txtvp"><?= substr($eventoArray[$key][0]->nm_evento, 0, 20) . "..."; ?></figcaption>
+                          <a href="eventos.php?id=<?= $eventoArray[$key][0]->cd_evento ?>">
+                            <img src="../imgs/img_eventos/<?= $eventoArray[$key][0]->cd_img_evento ?>" alt="imagem do evento">
+                            <figcaption class="txtvp"><?= substr($eventoArray[$key][0]->nm_evento, 0, 20) . "..."; ?></figcaption>
+                          </a>
                         </figure>
 
                         <div class="txtevp">
@@ -131,6 +149,15 @@ window.onload = function (){
     }
   }
   ajax.send();
+}
+
+function editar(){
+  const form = document.getElementById("form");
+  const campos = document.getElementById("campos");
+
+  campos.style = "display: none";
+  form.style = "display: block"
+
 }
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

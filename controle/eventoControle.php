@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
 
   $cd_evento = $_GET['id'];
   $evento->__set('cd_evento', $cd_evento);
-  
+
   $e = $evento->recuperarEvento();
 
   // se estiver logado verifica participância
@@ -63,6 +63,20 @@ if (isset($_GET['id'])) {
   $criador = $evento->cd_criador_evento;
   $dadosUser = $usuario->recUsuario($criador);
 
+  if (isset($_SESSION['usuario'])) {
+    if ($criador == $_SESSION['usuario']) {
+      $userCreator = true;
+    }else {
+      $userCreator = false;
+    }
+  }
   // num de participantes
   $n = $evento->numParticipantes($evento->cd_evento);
+
+  // Participantes
+  $cd_participantes = $evento->participantes($evento->cd_evento);
+  $participantes = $usuario->recUsuarios($cd_participantes);
+
+  //limite de mostrar participantes
+  $countPart = 0;
 }
