@@ -36,5 +36,13 @@ class Feedback
       ]);
     }
 
+    public function denunciar($evento, $usuario, $denuncia)
+    {
+        $denunciar = $this->conexao->insert('tb_denuncias', [
+          'cd_usuario' => $usuario,
+          'cd_evento' => $evento,
+          'nm_assunto_denuncia' => $denuncia
+        ]);
+    }
     // ---------------- #FUTURAS RECUPERAÇÕES -------------------
 }

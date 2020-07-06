@@ -13,10 +13,12 @@ include "authControle.php";
 use Classes\Usuario;
 use Classes\Database;
 use Classes\Evento;
+use Classes\Feedback;
 
 $conn = new Database('mysql', 'localhost', 'weacttcc', 'root', '');
 $usuario = new Usuario($conn);
 $evento = new Evento($conn);
+$fb = new Feedback($conn);
 
 
 // participando
@@ -50,7 +52,7 @@ if (isset($_GET['id'])) {
   // se estiver logado verifica participância
   if (isset($_SESSION['usuario'])) {
     $cd_usuario = $_SESSION['usuario'];
-    $participante = $evento->isParticipante($cd_usuario, $cd_evento);
+    $part = $evento->isParticipante($cd_usuario, $cd_evento);
   }
 
   // dando valores aos atributos da classe Evento
@@ -78,5 +80,23 @@ if (isset($_GET['id'])) {
   $participantes = $usuario->recUsuarios($cd_participantes);
 
   //limite de mostrar participantes
-  $countPart = 0;
+  $i = 0;
+}
+
+if (isset($_GET['denuncia'])) {
+
+  $id_evento = $_GET['denuncia'];
+
+  // verificando usuario logado para denunciar
+  if (!isset($_SESSION['usuario'])) {
+    header(sprintf('location: ../paginas/eventos.php?id=%s&denLog=false', $id_evento));
+    return false;
+  }
+
+  $id_usuario = $_SESSION['usuario'];
+  $denuncia = $_POST['denuncia'];
+
+  $fb->denunciar($id_evento, $id_usuario, $denuncia);
+  header(sprintf('location: ../paginas/eventos.php?id=%s&denLog=true', $id_evento));
+
 }

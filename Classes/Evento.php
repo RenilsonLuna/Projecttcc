@@ -125,5 +125,9 @@ class Evento
     ], \PDO::FETCH_ASSOC);
     return $participantes;
   }
+  
+  public function eventoPassado($evento)
+  {
+  }
 
 }

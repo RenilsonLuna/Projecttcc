@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="../css/evento.css">
   </head>
   <body>
+    <?php if (isset($_GET['denLog'])): ?>
+
+      <?php if ($_GET['denLog'] == 'false'): ?>
+        <div class="bg-danger py-2 rounded shadow fixed-top" id="denunciaAlerta">
+          <h4 class="text-light text-center">Faça login para denunciar evento</h4>
+        </div>
+      <?php endif; ?>
+      <?php if($_GET['denLog'] == 'true'): ?>
+        <div class="bg-success py-3 shadow fixed-top" id="denunciaAlerta">
+          <h4 class="text-light text-center">Denuncia enviada!</h4>
+        </div>
+      <?php endif; ?>
+    <?php endif; ?>
+
     <?php include "header.php" ?>
 
       <?php if (isset($_GET['id'])): ?>
@@ -22,7 +36,7 @@
 
         <main class="container-fluid mb-3">
 
-        <figure class="col-12 col-sm-12">
+        <figure class="col-12">
           <img src="../imgs/img_eventos/<?= $evento->cd_img_evento ?>" class="img-evento positionImg" alt="imagem do evento">
         </figure>
 
@@ -53,6 +67,29 @@
               <hr class="text-center bg-success">
             </div>
 
+            <div class="denuncia-content">
+
+              <div class="denuncia d-flex" onclick="camposDenuncia()">
+                <p>
+                  <img src="../imgs/img_pgn/denuncia.png" alt="icone Denuncia" width="20" height="20">
+                  Denunciar
+                </p>
+              </div>
+
+              <form id="formDenuncia" action="../controle/eventoControle.php?denuncia=<?= $evento->cd_evento ?>" method="post" class="hide">
+                <div class="col-6 border bg-light content-den">
+                  <label for="denuncia-1" class="d-flex mb-0 denRadio setaD">
+                    <input class="mr-1" type="radio" name="denuncia" id="denuncia-1" value="Evento não realizado">
+                    Evento não realizado
+                  </label>
+                  <label for="denuncia-2" class="d-flex mt-0 denRadio">
+                    <input class="mr-1" type="radio" name="denuncia" id="denuncia-2" value="Evento foge do escopo de voluntário" checked>
+                    Evento foge do escopo de voluntário
+                  </label>
+                </ul>
+                <button type="submit" class="btn btn-danger border mb-1 col-" name="button">Enviar</button>
+              </div>
+            </form>
           </div>
 
           <h1><?= $evento->nm_evento ?></h1>
@@ -66,22 +103,23 @@
                 <?= $n ?> Participantes
               </small><br>
 
-              <div class="col-8 my-2 hideParts" id="partList">
+              <div class="col-8 my-2 hide" id="partList">
                 <ul class="list-group">
-                  <?php for ($i=0; $i < 6; $i++) { ?>
+                  <?php foreach ($participantes as $participante):  $i++;?>
 
-                    <?php if ($i < 5){ ?>
-                      <li class="list-group-item col-5">
-                        <a href="perfil.php?usuario=<?= $participantes[$i][0]->cd_usuario ?>" class="text-dark nav-link">
-                          <img src="../imgs/img_perfis/<?= $participantes[$i][0]->cd_img_perfil ?>" class="rounded mr-2" width="30" alt="img perfil participante">
-                          <?= $participantes[$i][0]->nm_usuario; ?>
+
+                    <?php if ($i < 6){ ?>
+                      <li class="list-group-item col-md-5 col-12">
+                        <a href="perfil.php?usuario=<?= $participante[0]->cd_usuario ?>" class="text-dark nav-link">
+                          <img src="../imgs/img_perfis/<?= $participante[0]->cd_img_perfil ?>" class="rounded mr-2 img-participante" width="30" alt="img perfil participante">
+                          <?= $participante[0]->nm_usuario; ?>
                         </a>
                       </li>
-                    <?php }else{ ?>
-                      <li class="list-group-item col-5">Mais <?= count($participantes)-5 ?> participante(s)...</li>
-                    <? } ?>
-
-                  <?php } ?>
+                    <?php } ?>
+                <?php endforeach;?>
+                <?php if (count($participantes) > 5): ?>
+                  <li class="list-group-item col-md-5 col-12">Mais <?= count($participantes)-5 ?> participante(s)...</li>
+                <?php endif; ?>
                 </ul>
               </div>
             </div>
@@ -101,17 +139,16 @@
             <p><?= $evento->cd_requisitos ?></p>
           </div>
 
-          <?php if ($auth): ?>
-            <?php if (!$participante): ?>
-              <button class="btn bttn border" type="button" name="participar" onclick="participar(<?= $evento->cd_evento ?>)">Participar</button>
-            <?php else: ?>
-              <h5 class="alert alert-primary border text-center">Você está participando</h5>
-              <button class="cancelar btn btn-secondary" onclick="cancelar(<?= $evento->cd_evento ?>)" type="button" name="cancelar participação">Cancelar participação</button>
-            <?php endif; ?>
-          <?php else: ?>
-            <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
-          <?php endif; ?>
-
+          <?php if ($auth){ ?>
+              <?php if (!$part){ ?>
+                <button class="btn bttn border" type="button" name="participar" onclick="participar(<?= $evento->cd_evento ?>)">Participar</button>
+              <?php } else{ ?>
+                <h5 class="alert alert-primary border text-center">Você está participando</h5>
+                <button class="cancelar btn btn-secondary" onclick="cancelar(<?= $evento->cd_evento ?>)" type="button" name="cancelar participação">Cancelar participação</button>
+              <?php } ?>
+            <?php }else{ ?>
+              <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
+          <?php } ?>,
         </div>
 
       <?php else: header('location: ../index.php')?>
@@ -123,8 +160,22 @@
     <script type="text/javascript">
     let estado = 'ativo'
     function mostrarParticipantes(){
-      console.log(partList.classList.toggle("hideParts"));
+      partList.classList.toggle("hide");
     }
+    </script>
+
+    <script type="text/javascript">
+    function camposDenuncia(){
+      formDenuncia.classList.toggle("hide");
+    }
+    </script>
+    <script type="text/javascript">
+    alerta = document.getElementById('denunciaAlerta')
+    setTimeout(function(){
+      if (alerta) {
+        alerta.style = "display: none"
+      }
+    }, 3000)
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
