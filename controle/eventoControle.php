@@ -41,6 +41,7 @@ if (isset($_GET['cancelar'])) {
   header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
 }
 
+
 // pegando dados evento
 if (isset($_GET['id'])) {
 
@@ -71,6 +72,10 @@ if (isset($_GET['id'])) {
     }else {
       $userCreator = false;
     }
+
+    // tipo de usuario
+    $tipoUsuarioLogado = $usuario->recDadoUsuario($_SESSION['usuario'], 'cd_tipo_usuario');
+    $tipoUsuario = $tipoUsuarioLogado[0];
   }
   // num de participantes
   $n = $evento->numParticipantes($evento->cd_evento);
@@ -83,6 +88,7 @@ if (isset($_GET['id'])) {
   $i = 0;
 }
 
+// denunciar evento
 if (isset($_GET['denuncia'])) {
 
   $id_evento = $_GET['denuncia'];
@@ -98,5 +104,11 @@ if (isset($_GET['denuncia'])) {
 
   $fb->denunciar($id_evento, $id_usuario, $denuncia);
   header(sprintf('location: ../paginas/eventos.php?id=%s&denLog=true', $id_evento));
+}
 
+// deletar evento
+if (isset($_GET['deletar']) && is_int($_GET['deletar'])) {
+  $id_evento = $_GET['deletar'];
+
+  return $evento->excluirEvento($id_evento);
 }

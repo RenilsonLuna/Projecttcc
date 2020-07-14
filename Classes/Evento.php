@@ -52,7 +52,7 @@ class Evento
 
   public function todosEventos()
   {
-    return $this->conexao->select('SELECT * FROM tb_eventos');
+    return $this->conexao->select('SELECT * FROM tb_eventos ORDER BY dt_evento;');
   }
 
   public function criarEvento($nome, $criador, $dt, $ds, $hr, $endereco, $img, $requisitos)
@@ -125,9 +125,15 @@ class Evento
     ], \PDO::FETCH_ASSOC);
     return $participantes;
   }
-  
+
   public function eventoPassado($evento)
   {
+  }
+
+  public function excluirEvento($evento)
+  {
+    $this->conexao->delete('tb_eventos', sprintf('cd_evento = %s', $evento));
+    return;
   }
 
 }

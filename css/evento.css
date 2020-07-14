@@ -10,6 +10,7 @@
   filter: blur(5px);
   border: solid 3px rgba(0, 0, 0, 1);
   padding: 0 !important;
+  opacity: 0.8;
 }
 .img-jumbotron{
 
@@ -25,12 +26,23 @@
   position: relative;
   margin-left: -450px;
 }
+
 .img-evento{
   height: 500px;
   margin-top: -22%;
   padding: 0;
   z-index: 2;
   border-radius: 10px;
+}
+
+.deletar{
+  position: absolute;
+  right: 0;
+}
+
+.deletar:hover{
+  cursor: pointer;
+  filter: hue-rotate(-20deg);
 }
 
 .nome-criador{

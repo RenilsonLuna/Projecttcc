@@ -21,6 +21,7 @@ $handler = new \ByJG\Session\JwtSession($sessionConfig);
         <link href="https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/all.css" type="text/css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="icon" href="../imgs/logotipo.ico" />
         <title>Weact</title>
     </head>
 

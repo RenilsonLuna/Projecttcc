@@ -3,6 +3,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="../imgs/logotipo.ico" />
     <title>Evento</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -58,6 +59,17 @@
               <?php endif; ?> -->
 
             <?php endif; ?>
+
+            <?php if (isset($_SESSION['usuario'])): ?>
+
+            <?php if ($tipoUsuario->cd_tipo_usuario === 'adm'){ ?>
+              <div class="deletar" onclick="deletar(<?= $_GET['id'] ?>)">
+                <img src="../icones/lixeira.png" alt="deletar evento" width="30">
+              </div>
+            <?php } ?>
+
+          <?php endif; ?>
+
             <small class="text-center d-flex justify-content-center mb-2">Criado por:</small>
             <div class="nome-criador py-1 text-center">
               <a href="perfil.php?usuario=<?= $dadosUser['cd_usuario'] ?>" class="btn">
@@ -68,29 +80,28 @@
             </div>
 
             <div class="denuncia-content">
+                <div class="denuncia d-flex" onclick="camposDenuncia()">
+                  <p>
+                    <img src="../imgs/img_pgn/denuncia.png" alt="icone Denuncia" width="20" height="20">
+                    Denunciar
+                  </p>
+                </div>
 
-              <div class="denuncia d-flex" onclick="camposDenuncia()">
-                <p>
-                  <img src="../imgs/img_pgn/denuncia.png" alt="icone Denuncia" width="20" height="20">
-                  Denunciar
-                </p>
-              </div>
-
-              <form id="formDenuncia" action="../controle/eventoControle.php?denuncia=<?= $evento->cd_evento ?>" method="post" class="hide">
-                <div class="col-6 border bg-light content-den">
-                  <label for="denuncia-1" class="d-flex mb-0 denRadio setaD">
-                    <input class="mr-1" type="radio" name="denuncia" id="denuncia-1" value="Evento não realizado">
-                    Evento não realizado
-                  </label>
-                  <label for="denuncia-2" class="d-flex mt-0 denRadio">
-                    <input class="mr-1" type="radio" name="denuncia" id="denuncia-2" value="Evento foge do escopo de voluntário" checked>
-                    Evento foge do escopo de voluntário
-                  </label>
-                </ul>
-                <button type="submit" class="btn btn-danger border mb-1 col-" name="button">Enviar</button>
-              </div>
-            </form>
-          </div>
+                <form id="formDenuncia" action="../controle/eventoControle.php?denuncia=<?= $evento->cd_evento ?>" method="post" class="hide">
+                  <div class="col-6 border bg-light content-den">
+                    <label for="denuncia-1" class="d-flex mb-0 denRadio setaD">
+                      <input class="mr-1" type="radio" name="denuncia" id="denuncia-1" value="Evento não realizado">
+                      Evento não realizado
+                    </label>
+                    <label for="denuncia-2" class="d-flex mt-0 denRadio">
+                      <input class="mr-1" type="radio" name="denuncia" id="denuncia-2" value="Evento foge do escopo de voluntário" checked>
+                      Evento foge do escopo de voluntário
+                    </label>
+                  </ul>
+                  <button type="submit" class="btn btn-danger border mb-1 col-" name="button">Enviar</button>
+                </div>
+              </form>
+            </div>
 
           <h1><?= $evento->nm_evento ?></h1>
           <div class="data-local">
@@ -187,6 +198,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script src="../js/participar.js" charset="utf-8"></script>
+    <script src="../js/deletarPub.js" charset="utf-8"></script>
 
   </body>
 </html>

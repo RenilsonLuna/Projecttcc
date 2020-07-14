@@ -80,4 +80,17 @@ class Usuario
 		}
 		return $users;
 	}
+
+	public function recDadoUsuario($usuario, $dado)
+	{
+		$dadoUser = $this->conexao->select(sprintf('SELECT %s FROM tb_usuarios WHERE cd_usuario = :cd', $dado), [
+			'cd' => $usuario
+		]);
+		return $dadoUser;
+	}
+
+	public function editarUsuario($usuario, $dados = [])
+	{
+		$this->conexao->update('tb_usuarios', $dados, sprintf('cd_usuario = %s', $usuario));
+	}
 }

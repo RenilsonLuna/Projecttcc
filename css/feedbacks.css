@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+body{
+  background-color: #eee;
+}
+
+main{
+  width: 900px;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 50px;
+  padding-top: 15px;
+}
+
+main h1{
+  font-size: 30px;
+  text-align: center;
+}
+
+
+.content .campos input{
+  width: 300px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thin;
+  height: 38px;
+  padding-left: 10px;
+
+  color: black;
+  font-size: 18px;
+}
+
+.content textarea{
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thin;
+  border-color: grey;
+  padding-left: 10px;
+  color: black;
+  font-size: 18px;
+}
+
+.feedbacks{
+  background-color: rgb(4, 45, 96);
+  margin-bottom: 30px;
+  color: white;
+}
+
+.feedbacks .content{
+    position: relative;
+    left: calc(50% - 500px);
+}

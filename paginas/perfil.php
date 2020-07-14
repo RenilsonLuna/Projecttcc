@@ -11,6 +11,7 @@
         <link href="../css/style.css" rel="stylesheet" type="text/css">
         <link href="../css/all.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="../css/perfil.css" type="text/css">
+        <link rel="icon" href="../imgs/logotipo.ico" />
         <title>Weact</title>
     </head>
 
@@ -18,7 +19,7 @@
 
 <?php include "header.php"; ?>
 
-<div class="center">
+<div class="center" id="centro">
     <div class="perfil">
 
         <div class="row rowc d-flex justify-content-between">
@@ -55,17 +56,6 @@
                   <td id="logadouro"></td>
                 </tr>
               </table>
-              <form class="shadow p-5" action="../controle/editarPerfil.php" method="post" id="form">
-                <label for="nome">
-                  Nome
-                  <input class="form-control" type="text" name="Nome" id="nome" placeholder="Atual: <?= $usuario->nm_usuario ?>">
-                </label>
-                <label for="cep">
-                  CEP
-                  <input class="form-control" type="text" name="cep" id="cep" placeholder="Atual: <?= $usuario->cd_cep_usuario ?>">
-                </label>
-              </form>
-
             </div>
 
             <div class="row rowc d-flex justify-content-between">
@@ -76,7 +66,6 @@
                     <h5>Participando</h5>
                 </div>
             </div>
-
 
             <div class="row rowc d-flex justify-content-between">
               <div class="eventos row rowc">
@@ -119,9 +108,35 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<form class="shadow p-5 hide" action="../controle/editarPerfil.php" method="post" id="form">
+
+  <button type="button" id="close" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <label for="nome">
+    Nome
+    <input class="form-control" type="text" name="nome" id="nome" placeholder="Atual: <?= $usuario->nm_usuario ?>">
+  </label>
+  <label for="cep">
+    CEP
+    <input class="form-control" type="text" name="cep" id="cep" placeholder="Atual: <?= $usuario->cd_cep_usuario ?>">
+  </label>
+  <div>
+    <input class="" type="checkbox" name="check" id="check" onclick="checkbox()">
+    Alterar senha
+  </div>
+  <label for="senha hide">
+    <input class="form-control" type="password" name="senha" id="senha" placeholder="Senha">
+  </label>
+  <label for="conf hide">
+    <input class="form-control" type="password" name="conf" id="conf" placeholder="confirmar senha">
+  </label>
+  <button type="submit" name="btnEnviar" class="btn btn-success mt-3">Editar</button>
+</form>
 
 <?php include "footer.php"; ?>
 
@@ -151,14 +166,35 @@ window.onload = function (){
   ajax.send();
 }
 
-function editar(){
-  const form = document.getElementById("form");
-  const campos = document.getElementById("campos");
+function toggleCamp(){
+  form.classList.toggle('hide')
+  campos.classList.toggle('hide')
+  centro.classList.toggle('blur')
+}
 
-  campos.style = "display: none";
-  form.style = "display: block"
+function editar(){
+  toggleCamp()
+  checkbox()
+  btnClose = document.getElementById('close')
+  btnClose.addEventListener('click', toggleCamp)
 
 }
+
+function checkbox(){
+    const c = document.getElementById('check')
+    if (c.checked) {
+      senha.classList.remove('hide')
+      conf.classList.remove('hide')
+    }else{
+      senha.value = ""
+      conf.value = ""
+      senha.classList.add('hide')
+      conf.classList.add('hide')
+    }
+}
+
+
+
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -170,5 +206,4 @@ function editar(){
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script src="all.js"></script>
-
 </body>

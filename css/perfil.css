@@ -65,8 +65,27 @@
   border-radius: 10px;
 }
 
-#form{
+.hide{
   display: none;
+}
+
+#form{
+  position: absolute;
+  background-color: white;
+  width: 600px;
+  left: calc(50% - 300px);
+  filter: blur(0);
+  transform: translateY(300px);
+}
+
+#close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.blur{
+  filter: blur(2px);
 }
 
 .formulario{
