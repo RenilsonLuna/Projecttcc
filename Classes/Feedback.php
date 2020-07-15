@@ -45,4 +45,10 @@ class Feedback
         ]);
     }
     // ---------------- #FUTURAS RECUPERAÇÕES -------------------
+
+    public function recFeedbacks()
+    {
+      $rec = $this->conexao->select('SELECT * FROM tb_feedbacks');
+      return $rec;
+    }
 }

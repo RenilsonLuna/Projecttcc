@@ -1,0 +1,137 @@
+@charset "utf-8";
+
+
+@media only screen and (max-width: 950px){
+
+
+  .perfil{
+      max-width: 500px;
+      box-shadow: none;
+  }
+
+  .txtp{
+      color: #05286F;
+      font-size: large;
+      margin-left: 70%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+
+
+  .spanDestaque{
+    font-weight: bold;
+    font-size: 110%;
+  }
+
+  .imgp img{
+    height: 200px;
+    width: 200px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 5px;
+    margin-left: 50%;
+  }
+
+  .figevp figcaption{
+    position: relative;
+    height: 50px;
+    top: -50%;
+    margin-top: 2px;
+    z-index: 2;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+
+  .figevp img {
+    border-radius: 10px;
+  }
+
+  /*  FORMULARIO DE EDIÇÃO */
+  .hide{
+    display: none;
+  }
+
+  #form{
+    position: absolute;
+    background-color: white;
+    width: 600px;
+    left: calc(50% - 300px);
+    filter: blur(0);
+    transform: translateY(300px);
+  }
+
+  #close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .blur{
+    filter: blur(2px);
+  }
+
+  .formulario{
+    padding: 10px;
+    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
+  }
+  /* formulario de edição */
+
+  .eventos{
+      width: 450px;
+      background-color: white;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+      border-bottom-left-radius: 10px!important;
+      border-bottom-right-radius: 10px!important;
+      margin-right: 15px;
+      margin-left: 15px;
+      margin-bottom: 15px;
+  }
+
+  .ev1{ background-color: #ff7600; }
+
+  .ev2{ background-color: #05286F; }
+
+  .ev-top{
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+    padding: 2px;
+    height: 36px;
+    width: 450px;
+    text-align: center;
+
+  }
+
+  .evp{
+      height: 130px;
+      width: 130px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 10px;
+  }
+
+  .figevp{
+      height: 80%;
+      border-radius: 10px;
+      margin: 0;
+  }
+
+  .figevp img{
+    height: 130px;
+    max-width: 130px;
+    object-fit: cover;
+  }
+
+  .txtevp{
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+  .center{
+    max-width: 1024px;
+    margin: auto;
+  }
+}

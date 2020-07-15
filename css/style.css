@@ -53,6 +53,11 @@ header {
     background-color: white;
 }
 
+.form-userS{
+  position: absolute;
+  left: 20px;
+}
+
 footer a{
   font-size: 2rem;
 }
@@ -231,5 +236,11 @@ header .login {
   #alerta{
     left: 0;
     top: 0;
+  }
+
+  .form-userS{
+    position: relative;
+    left: calc(50% - 100px);
+    width: 200px;
   }
 }

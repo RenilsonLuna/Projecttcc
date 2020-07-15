@@ -62,7 +62,7 @@
 
             <?php if (isset($_SESSION['usuario'])): ?>
 
-            <?php if ($tipoUsuario->cd_tipo_usuario === 'adm'){ ?>
+            <?php if ($tipoUsuario == 'adm'){ ?>
               <div class="deletar" onclick="deletar(<?= $_GET['id'] ?>)">
                 <img src="../icones/lixeira.png" alt="deletar evento" width="30">
               </div>

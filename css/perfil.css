@@ -23,18 +23,10 @@
 .txtp{
     color: #05286F;
     font-size: large;
-    margin-left: 65.6px;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-
-/* .imgp{
-    height: 200px;
-    width: 200px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
-    border-radius: 10px!important;
-    overflow: hidden;
-    padding: 5px;
-
-} */
 
 .spanDestaque{
   font-weight: bold;
@@ -65,6 +57,7 @@
   border-radius: 10px;
 }
 
+/*  FORMULARIO DE EDIÇÃO */
 .hide{
   display: none;
 }
@@ -92,6 +85,7 @@
   padding: 10px;
   box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
 }
+/* formulario de edição */
 
 .eventos{
     width: 450px;
@@ -99,33 +93,26 @@
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
     border-bottom-left-radius: 10px!important;
     border-bottom-right-radius: 10px!important;
-    padding: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
 }
 
-.ev1{
-    background-color: #ff7600;
-    color: white;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
-    border-top-left-radius: 10px!important;
-    border-top-right-radius: 10px!important;
-    padding: 2px;
-    height: 36px;
-    width: 450px;
-    text-align: center;
-}
+.ev1{ background-color: #ff7600; }
 
-.ev2{
-    background-color: #05286F;
-    color: white;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
-    border-top-left-radius: 10px!important;
-    border-top-right-radius: 10px!important;
-    padding: 2px;
-    height: 36px;
-    width: 450px;
-    text-align: center;
-}
+.ev2{ background-color: #05286F; }
 
+.ev-top{
+  color: white;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)!important;
+  border-top-left-radius: 10px!important;
+  border-top-right-radius: 10px!important;
+  padding: 2px;
+  height: 36px;
+  width: 450px;
+  text-align: center;
+
+}
 
 .evp{
     height: 130px;

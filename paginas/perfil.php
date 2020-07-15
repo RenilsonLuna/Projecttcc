@@ -11,6 +11,7 @@
         <link href="../css/style.css" rel="stylesheet" type="text/css">
         <link href="../css/all.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="../css/perfil.css" type="text/css">
+        <link rel="stylesheet" href="../css/perfil-mobile.css">
         <link rel="icon" href="../imgs/logotipo.ico" />
         <title>Weact</title>
     </head>
@@ -23,7 +24,6 @@
     <div class="perfil">
 
         <div class="row rowc d-flex justify-content-between">
-            <p class="txtp"><?= $tipo ?></p>
             <div></div>
             <?php if (isset($_SESSION['usuario'])): ?>
               <?php if ($perfilUser == $_SESSION['usuario']): ?>
@@ -37,6 +37,7 @@
             <div class="row rowc col-12">
                 <figure class="imgp mr-3">
                     <img src="../imgs/img_perfis/<?= $usuario->cd_img_perfil ?>" alt="Imagem de perfil">
+                    <figcaption class="txtp"><?= $tipo ?></figcaption>
                 </figure>
                 <div class="dados col-8">
 
@@ -59,39 +60,48 @@
             </div>
 
             <div class="row rowc d-flex justify-content-between">
-                <div class="ev1">
-                    <h5>Seus Eventos</h5>
-                </div>
-                <div class="ev2">
-                    <h5>Participando</h5>
-                </div>
+
+
             </div>
 
-            <div class="row rowc d-flex justify-content-between">
-              <div class="eventos row rowc">
+            <div class="row d-flex justify-content-between">
 
-          <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
-              <?php foreach ($seuEvento as $evento): ?>
+                <div class="eventos">
+                  <div class="ev1 ev-top">
+                      <h5>Seus Eventos</h5>
+                  </div>
+                  <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
 
-                    <div class="evp">
-                        <figure class="figevp">
-                            <a href="eventos.php?id=<?= $evento['cd_evento'] ?>">
-                              <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
-                              <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
-                            </a>
-                        </figure>
-                    </div>
+                      <?php if (count($seuEvento) == 0): ?>
+                          <h4 class="card-title text-center p-3">Você não tem eventos criados...</h4>
+                      <?php endif; ?>
+                      <?php foreach ($seuEvento as $evento): ?>
 
-              <?php endforeach; ?>
-            <?php else: ?>
-              <h5 class="text-primary text-center p-3">É necessário ser uma instituição para ter eventos...</h5>
-            <?php endif; ?>
-            </div>
+                            <div class="evp float-left">
+                                <figure class="figevp">
+                                    <a href="eventos.php?id=<?= $evento['cd_evento'] ?>">
+                                      <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
+                                      <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                                    </a>
+                                </figure>
+                            </div>
 
-                <div class="eventos row rowc">
+                      <?php endforeach; ?>
+                    <?php else: ?>
+                      <h5 class="text-primary text-center p-3">É necessário ser uma instituição para ter eventos...</h5>
+                    <?php endif; ?>
+                </div>
 
+                <div class="eventos">
+                  <div class="ev2 ev-top">
+                      <h5>Participando</h5>
+                  </div>
+                  <?php if (count($eventoArray) == 0): ?>
+                      <h4 class="card-title text-center p-3">Você não participa de nenhum evento :(</h4>
+                  <?php endif; ?>
                   <?php foreach ($eventoArray as $key => $val): ?>
-                    <div class="evp">
+                    <div class="float-left">
+                      <div class="evp">
                         <figure class="figevp">
                           <a href="eventos.php?id=<?= $eventoArray[$key][0]->cd_evento ?>">
                             <img src="../imgs/img_eventos/<?= $eventoArray[$key][0]->cd_img_evento ?>" alt="imagem do evento">
@@ -102,6 +112,7 @@
                         <div class="txtevp">
 
                         </div>
+                      </div>
                     </div>
                   <?php endforeach; ?>
 

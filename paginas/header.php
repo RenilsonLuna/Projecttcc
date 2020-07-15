@@ -3,7 +3,7 @@
 <header class="log container col-12 py-2" style="background-color: white;">
 
     <!-- BUSCAR USUARIO -->
-    
+
   <!-- <form class="" action="../../tcc/index.php?" method="GET">
     <input type="text" class="input-search col-10 py-1" name="q" placeholder="Buscar usuário ou instituição" id="nome">
     <span class="input-group-btn">
@@ -53,7 +53,18 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav container col-5">
+
+      <form class="form-userS d-flex" action="../../tcc/paginas/buscarUsuarios.php" method="get">
+        <input type="search" class="form-control rounded-pill" name="q" value="" placeholder="procure por usuários">
+        <span class="input-group-btn">
+          <button class="btn btn-default input-btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+      </form>
+
+      <div class="navbar-nav container col-5">
+
             <a class="nav-item nav-link anav ativo" href="../../tcc/index.php">Inicio</a>
             <a class="nav-item nav-link anav" href="../../tcc/paginas/sobre_nos.php">Sobre nós</a>
             <a class="nav-item nav-link anav" href="../../tcc/paginas/contato.php">Contate-nos</a>
@@ -63,6 +74,10 @@
                 <a class="nav-item nav-link anav" href="../../tcc/paginas/perfil.php">
                   Perfil
                 </a>
+
+                <?php if (isset($tipo) && $tipo == 'adm'): ?>
+                  <a class="nav-item nav-link anav" href="../../tcc/paginas/feedbacks.php">Feedbacks</a>
+                <?php endif; ?>
 
               <?php } ?>
         </div>

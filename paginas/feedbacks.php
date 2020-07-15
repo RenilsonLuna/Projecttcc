@@ -20,28 +20,33 @@
 
         <h1>Feedbacks</h1>
 
+        <?php foreach ($fed as $f): ?>
         <div class="feedbacks mt-4 py-2">
+
+
           <div class="content d-flex">
 
             <div class="campos mr-3">
               <div class="mb-4">
-                <h5>Nome</h5>
-                <input type="text" value="Ricardo" disabled>
+                <h5>Usuário</h5>
+                  <input type="text" value="<?= $f->cd_usuario ?> - <?= $usuario->recDadoUsuario($f->cd_usuario, 'nm_usuario'); ?> " disabled>
               </div>
 
               <div>
                 <h5>Assunto</h5>
-                <input type="text" value="Tramagem" disabled>
+                <input type="text" value="<?= $f->nm_assunto ?>" disabled>
               </div>
             </div>
 
             <label>
               <h5>Mensagem</h5>
-              <textarea rows="5" cols="60" disabled>M</textarea>
+              <textarea rows="5" cols="60" disabled><?= $f->cd_mensagem ?></textarea>
             </label>
 
           </div>
         </div>
+
+      <?php endforeach; ?>
 
     </main>
 

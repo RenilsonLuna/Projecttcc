@@ -49,7 +49,9 @@ if (isset($_GET['id'])) {
   $evento->__set('cd_evento', $cd_evento);
 
   $e = $evento->recuperarEvento();
-
+  if (!$e) {
+    header('location: ../index.php');
+  }
   // se estiver logado verifica participância
   if (isset($_SESSION['usuario'])) {
     $cd_usuario = $_SESSION['usuario'];
@@ -74,8 +76,7 @@ if (isset($_GET['id'])) {
     }
 
     // tipo de usuario
-    $tipoUsuarioLogado = $usuario->recDadoUsuario($_SESSION['usuario'], 'cd_tipo_usuario');
-    $tipoUsuario = $tipoUsuarioLogado[0];
+    $tipoUsuario = $usuario->recDadoUsuario($_SESSION['usuario'], 'cd_tipo_usuario');
   }
   // num de participantes
   $n = $evento->numParticipantes($evento->cd_evento);
@@ -107,8 +108,14 @@ if (isset($_GET['denuncia'])) {
 }
 
 // deletar evento
-if (isset($_GET['deletar']) && is_int($_GET['deletar'])) {
-  $id_evento = $_GET['deletar'];
-
-  return $evento->excluirEvento($id_evento);
+if (isset($_GET['deletar'])) {
+  if (isset($_SESSION['usuario'])) {
+    $tipoUsuario = $usuario->recDadoUsuario($_SESSION['usuario'], 'cd_tipo_usuario');
+    if ($tipoUsuario == 'adm') {
+      $id_evento = $_GET['deletar'];
+      $evento->cancelarTodos($_GET['deletar']);
+      $evento->excluirEvento($id_evento);
+      header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
+    }
+  }
 }

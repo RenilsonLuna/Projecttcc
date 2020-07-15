@@ -86,7 +86,7 @@ class Usuario
 		$dadoUser = $this->conexao->select(sprintf('SELECT %s FROM tb_usuarios WHERE cd_usuario = :cd', $dado), [
 			'cd' => $usuario
 		]);
-		return $dadoUser;
+		return $dadoUser[0]->$dado;
 	}
 
 	public function editarUsuario($usuario, $dados = [])
