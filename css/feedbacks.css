@@ -42,11 +42,32 @@ main h1{
 
 .feedbacks{
   background-color: rgb(4, 45, 96);
-  margin-bottom: 30px;
   color: white;
 }
 
 .feedbacks .content{
     position: relative;
     left: calc(50% - 500px);
+}
+
+.deletar{
+  position: relative;
+  transform: translateX(-30px);
+}
+
+.deletar:hover{
+  cursor: pointer;
+  filter: hue-rotate(-20deg);
+}
+
+.pop-over{
+  position: absolute;
+  background-color: white;
+  z-index: 3;
+  width: 700px;
+  left: calc(50% - 350px);
+}
+
+.hide{
+  display: none;
 }

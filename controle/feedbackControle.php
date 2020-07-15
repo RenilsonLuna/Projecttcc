@@ -25,3 +25,11 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 $fed = $fb->recFeedbacks();
+
+if (isset($_SESSION['usuario'])) {
+  if (isset($_GET['deletar'])) {
+    $cd_evento = $_GET['deletar'];
+    $fb->excluirFeedback($_GET['deletar']);
+    header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
+  }
+}

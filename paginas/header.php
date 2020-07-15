@@ -75,8 +75,10 @@
                   Perfil
                 </a>
 
-                <?php if (isset($tipo) && $tipo == 'adm'): ?>
-                  <a class="nav-item nav-link anav" href="../../tcc/paginas/feedbacks.php">Feedbacks</a>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                  <?php if (isset($tipoU) && $tipoU == 'adm'): ?>
+                    <a class="nav-item nav-link anav" href="../../tcc/paginas/feedbacks.php">Feedbacks</a>
+                  <?php endif; ?>
                 <?php endif; ?>
 
               <?php } ?>

@@ -48,7 +48,13 @@ class Feedback
 
     public function recFeedbacks()
     {
-      $rec = $this->conexao->select('SELECT * FROM tb_feedbacks');
+      $rec = $this->conexao->select('SELECT * FROM tb_feedbacks ORDER BY dt_publicacao DESC');
       return $rec;
+    }
+
+    public function excluirFeedback($feedback)
+    {
+      $this->conexao->delete("tb_feedbacks", sprintf("cd_feedback = %s", $feedback));
+      return;
     }
 }
