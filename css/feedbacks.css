@@ -6,10 +6,10 @@ body{
 
 main{
   width: 900px;
-  background-color: white;
   border-radius: 10px;
   margin-top: 50px;
   padding-top: 15px;
+  background-color: white;
 }
 
 main h1{
@@ -17,6 +17,15 @@ main h1{
   text-align: center;
 }
 
+.tab{
+  position: fixed;
+  top: 50%;
+  width: 300px;
+}
+
+.tab button{
+  padding: 5px;
+}
 
 .content .campos input{
   width: 300px;
@@ -41,8 +50,10 @@ main h1{
 }
 
 .feedbacks{
-  background-color: rgb(4, 45, 96);
   color: white;
+  background-color: #08265f;
+  border-bottom: solid thin;
+  border-radius: 8px;
 }
 
 .feedbacks .content{

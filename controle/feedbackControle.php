@@ -24,12 +24,22 @@ if (!isset($_SESSION['usuario'])) {
   header('location: ../index.php');
 }
 
-$fed = $fb->recFeedbacks();
+if (!isset($_GET['rec']) || $_GET['rec'] == 'fb') {
+  $fed = $fb->recFeedbacks();
+}
+if (isset($_GET['rec']) && $_GET['rec'] == 'den') {
+  $den = $fb->recDenuncias();
+}
 
 if (isset($_SESSION['usuario'])) {
-  if (isset($_GET['deletar'])) {
-    $cd_evento = $_GET['deletar'];
-    $fb->excluirFeedback($_GET['deletar']);
+  if (isset($_GET['deletarFb'])) {
+    $cdFb = $_GET['deletarFb'];
+    $fb->excluirFeedback($cdFb);
+    header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
+  }
+  if (isset($_GET['deletarDen'])) {
+    $cdDen = $_GET['deletarDen'];
+    $fb->excluirDenuncia($cdDen);
     header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
   }
 }

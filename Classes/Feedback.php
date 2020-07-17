@@ -55,6 +55,16 @@ class Feedback
     public function excluirFeedback($feedback)
     {
       $this->conexao->delete("tb_feedbacks", sprintf("cd_feedback = %s", $feedback));
-      return;
+    }
+
+    public function recDenuncias()
+    {
+      $rec = $this->conexao->select("SELECT * FROM tb_denuncias ORDER BY cd_denuncia DESC");
+      return $rec;
+    }
+
+    public function excluirDenuncia($denuncia)
+    {
+      $this->conexao->delete('tb_denuncias', sprintf("cd_denuncia = %s", $denuncia));
     }
 }

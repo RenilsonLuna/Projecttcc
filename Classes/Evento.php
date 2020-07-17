@@ -55,6 +55,14 @@ class Evento
     return $this->conexao->select('SELECT * FROM tb_eventos ORDER BY dt_evento;');
   }
 
+  public function recDadoEvento($evento, $dado)
+  {
+    $dt = $this->conexao->select(sprintf("SELECT %s FROM tb_eventos WHERE cd_evento = :cd", $dado), [
+      'cd' => $evento
+    ]);
+    return $dt[0]->$dado;
+  }
+
   public function criarEvento($nome, $criador, $dt, $ds, $hr, $endereco, $img, $requisitos)
   {
     $this->conexao->insert('tb_eventos', [
