@@ -50,9 +50,14 @@ class Evento
     return $evento;
   }
 
-  public function todosEventos()
+  public function todosEventosAtuais()
   {
-    return $this->conexao->select('SELECT * FROM tb_eventos ORDER BY dt_evento;');
+    return $this->conexao->select('SELECT * FROM tb_eventos WHERE dt_evento > CURRENT_TIMESTAMP ORDER BY dt_evento;');
+  }
+
+  public function todosEventosPassados()
+  {
+    return $this->conexao->select('SELECT * FROM tb_eventos WHERE dt_evento < CURRENT_TIMESTAMP ORDER BY dt_evento;');
   }
 
   public function recDadoEvento($evento, $dado)

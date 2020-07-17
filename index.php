@@ -82,6 +82,11 @@ require "controle/homeControle.php";
 
     <?php include "paginas/header.php" ?>
 
+    <?php if (isset($_GET['rec']) && $_GET['rec'] == 'passados'): ?>
+      <a href="index.php" class=" p-2 px-3 btn btn-primary">...Voltar aos recentes</a>
+    <?php else: ?>
+      <a href="index.php?rec=passados" class="btn btn-success">Ver eventos passados...</a>
+    <?php endif; ?>
 
         <main class="container-fluid" id="main">
 
@@ -103,7 +108,7 @@ require "controle/homeControle.php";
             <?php if ($auth): ?>
 
               <div class="">
-                <a class="btn-mais p-2" href="paginas/criarEvento.php">Criar evento <i class="fas fa-plus"></i> </a>
+                <a class="btn-mais p-2 mr-3" href="paginas/criarEvento.php">Criar evento <i class="fas fa-plus"></i></a>
               </div>
 
             <?php endif; ?>

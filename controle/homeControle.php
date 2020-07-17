@@ -22,7 +22,7 @@ $usuario = new Usuario($conn);
 $evento = new Evento($conn);
 
 $counter = 0;
-$e = $evento->todosEventos();
+$e = $evento->todosEventosAtuais();
 
 // buscando evento
 if (isset($_GET['q'])) {
@@ -30,4 +30,8 @@ if (isset($_GET['q'])) {
   $e = $conn->select("SELECT * FROM tb_eventos WHERE nm_evento LIKE '%$nome%'", [
     'nm' => $nome
   ]);
+}
+
+if (isset($_GET['rec']) && $_GET['rec'] == 'passados') {
+  $e = $evento->todosEventosPassados();
 }
