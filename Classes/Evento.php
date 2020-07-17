@@ -42,6 +42,14 @@ class Evento
     return $evento;
   }
 
+  public function recuperarEventoPassado()
+  {
+    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :id AND dt_evento > CURRENT_TIMESTAMP", [
+      'id' => $this->cd_evento
+    ]);
+    return $evento;
+  }
+
   public function recuperarEventoByAttr($valor, $atributo)
   {
     $evento = $this->conexao->select(sprintf("SELECT * FROM tb_eventos WHERE %s = :cd", $atributo), [
@@ -112,15 +120,31 @@ class Evento
 
   public function seusEventos($usuario)
   {
-    $eventos = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_criador_evento = :criador", [
+    $eventos = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_criador_evento = :criador AND dt_evento > CURRENT_TIMESTAMP", [
       'criador' => $usuario
     ], \PDO::FETCH_ASSOC);;
     return $eventos;
   }
 
+  public function seusEventosPassados($usuario)
+  {
+    $eventos = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_criador_evento = :criador AND dt_evento < CURRENT_TIMESTAMP", [
+      'criador' => $usuario
+    ], \PDO::FETCH_ASSOC);
+    return $eventos;
+  }
+
   public function eventosParticipando($usuario)
   {
-    $eventos = $this->conexao->select("SELECT * FROM tb_usuarios_eventos WHERE cd_usuario = :cd", [
+    $eventos = $this->conexao->select("SELECT * FROM tb_eventos LEFT JOIN tb_usuarios_eventos ON (tb_usuarios_eventos.cd_evento = tb_eventos.cd_evento) WHERE dt_evento > CURRENT_TIMESTAMP AND tb_usuarios_eventos.cd_usuario = :cd", [
+      'cd' => $usuario
+    ], \PDO::FETCH_ASSOC);
+    return $eventos;
+  }
+
+  public function eventosParticipados($usuario)
+  {
+    $eventos = $this->conexao->select("SELECT * FROM tb_eventos LEFT JOIN tb_usuarios_eventos ON (tb_usuarios_eventos.cd_evento = tb_eventos.cd_evento) WHERE dt_evento < CURRENT_TIMESTAMP AND tb_usuarios_eventos.cd_usuario = :cd", [
       'cd' => $usuario
     ], \PDO::FETCH_ASSOC);
     return $eventos;
@@ -144,14 +168,23 @@ class Evento
     return $participantes;
   }
 
-  public function eventoPassado($evento)
-  {
-  }
-
   public function excluirEvento($evento)
   {
     $this->conexao->delete('tb_eventos', sprintf('cd_evento = %s', $evento));
     return;
+  }
+
+  public function eventoPassado($e)
+  {
+    $e = $this->conexao->select("SELECT dt_evento FROM tb_eventos WHERE cd_evento = :cd AND dt_evento < CURRENT_TIMESTAMP", [
+      'cd' => $e
+    ]);
+
+    if (count($e) != 1) {
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

@@ -59,53 +59,57 @@
               </table>
             </div>
 
-            <div class="row rowc d-flex justify-content-between">
-
-
+            <div class="tabs mx-auto my-3 border-bottom">
+              <a class="btn" href="perfil.php">Eventos atuais</a>
+              <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
+                <a class="btn" href="perfil.php?rec=feitos">eventos realizados</a>
+              <?php endif; ?>
+              <a class="btn" href="perfil.php?rec=part">Eventos participados</a>
             </div>
 
             <div class="row d-flex justify-content-between">
 
+              <?php if (!isset($_GET['rec'])): ?>
                 <div class="eventos">
                   <div class="ev1 ev-top">
-                      <h5>Seus Eventos</h5>
+                    <h5>Seus Eventos</h5>
                   </div>
                   <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
 
-                      <?php if (count($seuEvento) == 0): ?>
-                          <h4 class="card-title text-center p-3">Você não tem eventos criados...</h4>
-                      <?php endif; ?>
-                      <?php foreach ($seuEvento as $evento): ?>
-
-                            <div class="evp float-left">
-                                <figure class="figevp">
-                                    <a href="eventos.php?id=<?= $evento['cd_evento'] ?>">
-                                      <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
-                                      <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
-                                    </a>
-                                </figure>
-                            </div>
-
-                      <?php endforeach; ?>
-                    <?php else: ?>
-                      <h5 class="text-primary text-center p-3">É necessário ser uma instituição para ter eventos...</h5>
+                    <?php if (count($seuEvento) == 0): ?>
+                      <h4 class="card-title text-center p-3">Você não tem eventos criados...</h4>
                     <?php endif; ?>
+                    <?php foreach ($seuEvento as $evento): ?>
+
+                      <div class="evp float-left">
+                        <figure class="figevp">
+                          <a href="eventos.php?id=<?= $evento['cd_evento'] ?>">
+                            <img src="../imgs/img_eventos/<?= $evento['cd_img_evento'] ?>" alt="imagem do evento">
+                            <figcaption class="txtvp"><?= substr($evento['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                          </a>
+                        </figure>
+                      </div>
+
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <h5 class="text-primary text-center p-3">É necessário ser uma instituição para ter eventos...</h5>
+                  <?php endif; ?>
                 </div>
 
                 <div class="eventos">
                   <div class="ev2 ev-top">
-                      <h5>Participando</h5>
+                    <h5>Participando</h5>
                   </div>
                   <?php if (count($eventoArray) == 0): ?>
-                      <h4 class="card-title text-center p-3">Você não participa de nenhum evento :(</h4>
+                    <h4 class="card-title text-center p-3">Você não participa de nenhum evento :(</h4>
                   <?php endif; ?>
-                  <?php foreach ($eventoArray as $key => $val): ?>
+                  <?php foreach ($eventoArray as $ev): ?>
                     <div class="float-left">
                       <div class="evp">
                         <figure class="figevp">
-                          <a href="eventos.php?id=<?= $eventoArray[$key][0]->cd_evento ?>">
-                            <img src="../imgs/img_eventos/<?= $eventoArray[$key][0]->cd_img_evento ?>" alt="imagem do evento">
-                            <figcaption class="txtvp"><?= substr($eventoArray[$key][0]->nm_evento, 0, 20) . "..."; ?></figcaption>
+                          <a href="eventos.php?id=<?= $ev['cd_evento'] ?>">
+                            <img src="../imgs/img_eventos/<?= $ev['cd_img_evento'] ?>" alt="imagem do evento">
+                            <figcaption class="txtvp"><?= substr($ev['nm_evento'], 0, 20) . "..."; ?></figcaption>
                           </a>
                         </figure>
 
@@ -115,9 +119,61 @@
                       </div>
                     </div>
                   <?php endforeach; ?>
-
                 </div>
+              <?php endif; ?>
+
             </div>
+
+            <!-- feito -->
+            <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp' && isset($_GET['rec']) && $_GET['rec'] == 'feitos'): ?>
+              <div class="eventosF">
+                <div class="ev2 ev-topF">
+                  <h5>Seus eventos Passados</h5>
+                </div>
+                <?php if (count($eventosRealizados) == 0): ?>
+                  <h4 class="card-title text-center p-3">Você não realizou nenhum evento :(</h4>
+                <?php endif; ?>
+                <?php foreach ($eventosRealizados as $ev): ?>
+                  <div class="float-left">
+                    <div class="evp">
+                      <figure class="figevp">
+                        <a href="eventos.php?id=<?= $ev['cd_evento'] ?>">
+                          <img src="../imgs/img_eventos/<?= $ev['cd_img_evento'] ?>" alt="imagem do evento">
+                          <figcaption class="txtvp"><?= substr($ev['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            <?php endif; ?>
+            <!-- feito -->
+
+            <!-- realizados -->
+            <?php if (isset($_GET['rec']) && $_GET['rec'] == 'part'): ?>
+              <div class="eventosF">
+                <div class="ev1 ev-topF">
+                  <h5>Participações</h5>
+                </div>
+                <?php if (count($evP) == 0): ?>
+                  <h4 class="card-title text-center p-3">Você não participou de nenhum evento...</h4>
+                <?php endif; ?>
+                <?php foreach ($evP as $e): ?>
+                  <div class="float-left">
+                    <div class="evp">
+                      <figure class="figevp">
+                        <a href="eventos.php?id=<?= $e['cd_evento'] ?>">
+                          <img src="../imgs/img_eventos/<?= $e['cd_img_evento'] ?>" alt="imagem do evento">
+                          <figcaption class="txtvp"><?=  substr($e['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            <?php endif; ?>
+            <!-- realizados -->
+
         </div>
     </div>
 </div>

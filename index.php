@@ -83,9 +83,9 @@ require "controle/homeControle.php";
     <?php include "paginas/header.php" ?>
 
     <?php if (isset($_GET['rec']) && $_GET['rec'] == 'passados'): ?>
-      <a href="index.php" class=" p-2 px-3 btn btn-primary">...Voltar aos recentes</a>
+      <a href="index.php" class=" p-2 px-3 btn btn-success">...Voltar aos recentes</a>
     <?php else: ?>
-      <a href="index.php?rec=passados" class="btn btn-success">Ver eventos passados...</a>
+      <a href="index.php?rec=passados" class="btn btn-primary">Ver eventos passados...</a>
     <?php endif; ?>
 
         <main class="container-fluid" id="main">

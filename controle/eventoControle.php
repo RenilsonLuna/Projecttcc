@@ -87,6 +87,9 @@ if (isset($_GET['id'])) {
 
   //limite de mostrar participantes
   $i = 0;
+
+  // verificando se evento já passou
+  $evPassado = $evento->eventoPassado($_GET['id']);
 }
 
 // denunciar evento

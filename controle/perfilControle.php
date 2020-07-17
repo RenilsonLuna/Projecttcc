@@ -50,13 +50,15 @@ switch ($usuario->cd_tipo_usuario) {
   break;
 }
 
+if (isset($_GET['rec']) && $_GET['rec'] == 'feitos' && $tipo == 'Instituição' || $tipo == 'Administrador') {
+  $eventosRealizados = $evento->seusEventosPassados($perfilUser);
+}
+
+if (isset($_GET['rec']) && $_GET['rec'] == 'part') {
+  $evP = $evento->eventosParticipados($perfilUser);
+}
+
 // eventos criados pelo usuario
 $seuEvento = $evento->seusEventos($perfilUser);
-$eventosPart = $evento->eventosParticipando($perfilUser);
-$eventoArray = [];
-for ($i=0; $i < count($eventosPart); $i++) {
-  $usuario_evento = $eventosPart[$i];
-  $cd_evento = $usuario_evento['cd_evento'];
-  $evento->__set('cd_evento', $cd_evento);
-  $eventoArray[$i] = $evento->recuperarEvento();
-}
+// eventos participados
+$eventoArray = $evento->eventosParticipando($perfilUser);

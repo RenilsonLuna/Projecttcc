@@ -150,16 +150,20 @@
             <p><?= $evento->cd_requisitos ?></p>
           </div>
 
-          <?php if ($auth){ ?>
-              <?php if (!$part){ ?>
-                <button class="btn bttn border" type="button" name="participar" onclick="participar(<?= $evento->cd_evento ?>)">Participar</button>
-              <?php } else{ ?>
-                <h5 class="alert alert-primary border text-center">Você está participando</h5>
-                <button class="cancelar btn btn-secondary" onclick="cancelar(<?= $evento->cd_evento ?>)" type="button" name="cancelar participação">Cancelar participação</button>
-              <?php } ?>
-            <?php }else{ ?>
-              <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
-          <?php } ?>,
+          <?php if ($evPassado): ?>
+
+            <?php if ($auth){ ?>
+                <?php if (!$part){ ?>
+                  <button class="btn bttn border" type="button" name="participar" onclick="participar(<?= $evento->cd_evento ?>)">Participar</button>
+                <?php } else{ ?>
+                  <h5 class="alert alert-primary border text-center">Você está participando</h5>
+                  <button class="cancelar btn btn-secondary" onclick="cancelar(<?= $evento->cd_evento ?>)" type="button" name="cancelar participação">Cancelar participação</button>
+                <?php } ?>
+              <?php }else{ ?>
+                <h5 class="alert alert-danger border text-center">Faça login para participar do evento</h5>
+            <?php } ?>
+
+        <?php endif; ?>
         </div>
 
       <?php else: header('location: ../index.php')?>
