@@ -176,12 +176,14 @@
     let estado = 'ativo'
     function mostrarParticipantes(){
       partList.classList.toggle("hide");
+      formDenuncia.classList.add('hide')
     }
     </script>
 
     <script type="text/javascript">
     function camposDenuncia(){
       formDenuncia.classList.toggle("hide");
+      partList.classList.add('hide')
     }
     </script>
     <script type="text/javascript">
