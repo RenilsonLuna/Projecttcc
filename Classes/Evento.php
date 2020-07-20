@@ -44,7 +44,7 @@ class Evento
 
   public function recuperarEventoPassado()
   {
-    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :id AND dt_evento > CURRENT_TIMESTAMP", [
+    $evento = $this->conexao->select("SELECT * FROM tb_eventos WHERE cd_evento = :id AND dt_evento > DATE_FORMAT(CURRENT_TIMESTAMP, '%M, %D, %dY')", [
       'id' => $this->cd_evento
     ]);
     return $evento;
@@ -60,12 +60,12 @@ class Evento
 
   public function todosEventosAtuais()
   {
-    return $this->conexao->select('SELECT * FROM tb_eventos WHERE dt_evento > CURRENT_TIMESTAMP ORDER BY dt_evento;');
+    return $this->conexao->select("SELECT * FROM tb_eventos WHERE dt_evento > CURRENT_TIMESTAMP ORDER BY dt_evento;");
   }
 
   public function todosEventosPassados()
   {
-    return $this->conexao->select('SELECT * FROM tb_eventos WHERE dt_evento < CURRENT_TIMESTAMP ORDER BY dt_evento;');
+    return $this->conexao->select("SELECT * FROM tb_eventos WHERE dt_evento < CURRENT_TIMESTAMP ORDER BY dt_evento;");
   }
 
   public function recDadoEvento($evento, $dado)

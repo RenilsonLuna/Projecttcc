@@ -119,7 +119,6 @@ require "controle/homeControle.php";
             <div class="eventos row justify-content-center col-8">
 
               <?php foreach ($e as $key => $v): ?>
-                <?php if ($counter >= 6){ continue; } ?>
                 <div class="card float-left shadow" style="width: 20rem;">
                     <img src="imgs/img_eventos/<?= $v->cd_img_evento ?>" class="card-img-top" alt="Imagem do evento">
 
@@ -144,7 +143,7 @@ require "controle/homeControle.php";
                   <button class="btn" onclick="redirect(<?=
                   $v->cd_evento?>)">Ver mais</button>
                 </div>
-              <?php $counter++; endforeach; ?>
+              <?php endforeach; ?>
 
             </div>
           </div>

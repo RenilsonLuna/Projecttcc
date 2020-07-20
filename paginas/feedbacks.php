@@ -85,7 +85,7 @@
                   <h5><?= $usuario->recDadoUsuario($d->cd_usuario, "nm_usuario") ?></h5>
                   <p class="card-text"><?= $d->nm_assunto_denuncia ?></p>
                 </div>
-                <a href="#" class="card-link">Ver evento</a>
+                <a href="eventos.php?id=<?= $d->cd_evento ?>" class="card-link">Ver evento</a>
               </div>
             </div>
 

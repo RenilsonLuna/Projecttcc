@@ -60,11 +60,11 @@
             </div>
 
             <div class="tabs mx-auto my-3 border-bottom">
-              <a class="btn" href="perfil.php">Eventos atuais</a>
+              <a class="btn" href="perfil.php?usuario=<?=$perfilUser?>">Eventos atuais</a>
               <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
-                <a class="btn" href="perfil.php?rec=feitos">eventos realizados</a>
+                <a class="btn" href="perfil.php?usuario=<?=$perfilUser?>&rec=feitos">eventos realizados</a>
               <?php endif; ?>
-              <a class="btn" href="perfil.php?rec=part">Eventos participados</a>
+              <a class="btn" href="perfil.php?usuario=<?=$perfilUser?>&rec=part">Eventos participados</a>
             </div>
 
             <div class="row d-flex justify-content-between">
@@ -125,27 +125,33 @@
             </div>
 
             <!-- feito -->
-            <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp' && isset($_GET['rec']) && $_GET['rec'] == 'feitos'): ?>
-              <div class="eventosF">
-                <div class="ev2 ev-topF">
-                  <h5>Seus eventos Passados</h5>
-                </div>
-                <?php if (count($eventosRealizados) == 0): ?>
-                  <h4 class="card-title text-center p-3">Você não realizou nenhum evento :(</h4>
-                <?php endif; ?>
-                <?php foreach ($eventosRealizados as $ev): ?>
-                  <div class="float-left">
-                    <div class="evp">
-                      <figure class="figevp">
-                        <a href="eventos.php?id=<?= $ev['cd_evento'] ?>">
-                          <img src="../imgs/img_eventos/<?= $ev['cd_img_evento'] ?>" alt="imagem do evento">
-                          <figcaption class="txtvp"><?= substr($ev['nm_evento'], 0, 20) . "..."; ?></figcaption>
-                        </a>
-                      </figure>
-                    </div>
+            <?php if (isset($_GET['rec']) && $_GET['rec'] == 'feitos'): ?>
+
+              <?php if ($usuario->cd_tipo_usuario == 'adm' || $usuario->cd_tipo_usuario == 'emp'): ?>
+
+                <div class="eventosF">
+                  <div class="ev2 ev-topF">
+                    <h5>Seus eventos Passados</h5>
                   </div>
-                <?php endforeach; ?>
-              </div>
+                  <?php if (count($eventosRealizados) == 0): ?>
+                    <h4 class="card-title text-center p-3">Você não realizou nenhum evento :(</h4>
+                  <?php endif; ?>
+                  <?php foreach ($eventosRealizados as $ev): ?>
+                    <div class="float-left">
+                      <div class="evp">
+                        <figure class="figevp">
+                          <a href="eventos.php?id=<?= $ev['cd_evento'] ?>">
+                            <img src="../imgs/img_eventos/<?= $ev['cd_img_evento'] ?>" alt="imagem do evento">
+                            <figcaption class="txtvp"><?= substr($ev['nm_evento'], 0, 20) . "..."; ?></figcaption>
+                          </a>
+                        </figure>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+
+              <?php endif; ?>
+
             <?php endif; ?>
             <!-- feito -->
 
